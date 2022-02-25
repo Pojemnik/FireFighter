@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private float _cameraSesitivity;
     [SerializeField]
     private float _lookXLimit = 45.0f;
+    [SerializeField]
+    private float _crouchCameraHeightDelta;
 
     [Header("Other")]
     [SerializeField]
@@ -29,23 +31,15 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
     private float _rotationX = 0;
-    private bool _slowMovement;
+    private bool _crouching;
     private Vector3 _forward;
     private Vector3 _right;
-    private Vector2 _currentSpeed;
+    private Vector2 _inputSpeed;
     private bool _jump;
 
     public void Move(InputAction.CallbackContext context)
     {
-        Vector2 inputSpeed = context.ReadValue<Vector2>();
-        _currentSpeed.x = (_slowMovement ? _slowSpeed : _normalSpeed) * inputSpeed.y;
-        _currentSpeed.y = (_slowMovement ? _slowSpeed : _normalSpeed) * inputSpeed.x;
-    }
-
-    private void UpdateDirectionVectors()
-    {
-        _forward = transform.TransformDirection(Vector3.forward);
-        _right = transform.TransformDirection(Vector3.right);
+        _inputSpeed = context.ReadValue<Vector2>();
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -69,6 +63,24 @@ public class PlayerMovement : MonoBehaviour
         UpdateDirectionVectors();
     }
 
+    public void Crouch(InputAction.CallbackContext context)
+    {
+        if(context.started && !_crouching)
+        {
+            _crouching = true;
+            Vector3 cameraPos = _playerCamera.transform.position;
+            cameraPos.y -= _crouchCameraHeightDelta;
+            _playerCamera.transform.position = cameraPos;
+        }
+        if(context.canceled && _crouching)
+        {
+            _crouching = false;
+            Vector3 cameraPos = _playerCamera.transform.position;
+            cameraPos.y += _crouchCameraHeightDelta;
+            _playerCamera.transform.position = cameraPos;
+        }
+    }
+
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -80,7 +92,10 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         float movementDirectionY = _moveDirection.y;
-        _moveDirection = (_forward * _currentSpeed.x) + (_right * _currentSpeed.y);
+        Vector3 currentSpeed;
+        currentSpeed.x = (_crouching ? _slowSpeed : _normalSpeed) * _inputSpeed.y;
+        currentSpeed.y = (_crouching ? _slowSpeed : _normalSpeed) * _inputSpeed.x;
+        _moveDirection = (_forward * currentSpeed.x) + (_right * currentSpeed.y);
         if (_jump)
         {
             _moveDirection.y = _jumpSpeed;
@@ -95,5 +110,11 @@ public class PlayerMovement : MonoBehaviour
             _moveDirection.y -= _gravity * Time.deltaTime;
         }
         _characterController.Move(_moveDirection * Time.deltaTime);
+    }
+
+    private void UpdateDirectionVectors()
+    {
+        _forward = transform.TransformDirection(Vector3.forward);
+        _right = transform.TransformDirection(Vector3.right);
     }
 }

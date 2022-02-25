@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _lookXLimit = 45.0f;
     [SerializeField]
-    private float _crouchCameraHeightDelta;
+    private float _crouchHeightDelta;
 
     [Header("Other")]
     [SerializeField]
@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _moveDirection = Vector3.zero;
     private float _rotationX = 0;
     private bool _crouching;
+    private bool _crouchingInput;
     private Vector3 _forward;
     private Vector3 _right;
     private Vector2 _inputSpeed;
@@ -65,20 +66,42 @@ public class PlayerMovement : MonoBehaviour
 
     public void Crouch(InputAction.CallbackContext context)
     {
-        if(context.started && !_crouching)
+        if (context.started && !_crouching)
         {
-            _crouching = true;
-            Vector3 cameraPos = _playerCamera.transform.position;
-            cameraPos.y -= _crouchCameraHeightDelta;
-            _playerCamera.transform.position = cameraPos;
+            _crouching = _crouchingInput = true;
+            StartChrouching();
         }
-        if(context.canceled && _crouching)
+        if (context.canceled && _crouching)
         {
-            _crouching = false;
-            Vector3 cameraPos = _playerCamera.transform.position;
-            cameraPos.y += _crouchCameraHeightDelta;
-            _playerCamera.transform.position = cameraPos;
+            _crouchingInput = false;
+            if (CrouchStopCheck())
+            {
+                StopCrouching();
+            }
         }
+    }
+
+    private void StopCrouching()
+    {
+        _crouching = false;
+        Vector3 cameraPos = _playerCamera.transform.position;
+        cameraPos.y += _crouchHeightDelta;
+        _playerCamera.transform.position = cameraPos;
+        _characterController.height += _crouchHeightDelta;
+        Vector3 center = _characterController.center;
+        center.y += _crouchHeightDelta / 2f;
+        _characterController.center = center;
+    }
+
+    private void StartChrouching()
+    {
+        Vector3 cameraPos = _playerCamera.transform.position;
+        cameraPos.y -= _crouchHeightDelta;
+        _playerCamera.transform.position = cameraPos;
+        _characterController.height -= _crouchHeightDelta;
+        Vector3 center = _characterController.center;
+        center.y -= _crouchHeightDelta / 2f;
+        _characterController.center = center;
     }
 
     private void Start()
@@ -91,6 +114,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if(_crouching && !_crouchingInput)
+        {
+            if (CrouchStopCheck())
+            {
+                StopCrouching();
+            }
+        }
         float movementDirectionY = _moveDirection.y;
         Vector3 currentSpeed;
         currentSpeed.x = (_crouching ? _slowSpeed : _normalSpeed) * _inputSpeed.y;
@@ -110,6 +140,11 @@ public class PlayerMovement : MonoBehaviour
             _moveDirection.y -= _gravity * Time.deltaTime;
         }
         _characterController.Move(_moveDirection * Time.deltaTime);
+    }
+
+    private bool CrouchStopCheck()
+    {
+        return !Physics.Raycast(transform.position, Vector3.up, (_characterController.height + _crouchHeightDelta) / 2f, LayerMask.GetMask("Environment"));
     }
 
     private void UpdateDirectionVectors()

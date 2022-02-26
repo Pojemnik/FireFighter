@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Other")]
     [SerializeField]
     private float _gravity;
+    [SerializeField]
+    private float _kickForce;
 
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
@@ -142,6 +144,14 @@ public class PlayerMovement : MonoBehaviour
             _moveDirection.y -= _gravity * Time.deltaTime;
         }
         _characterController.Move(_moveDirection * Time.deltaTime);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.rigidbody != null)
+        {
+            hit.rigidbody.AddForce((hit.point - transform.position).normalized * _kickForce);
+        }
     }
 
     private bool CrouchStopCheck()

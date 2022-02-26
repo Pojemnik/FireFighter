@@ -672,6 +672,7 @@ MonoBehaviour:
   _lookXLimit: 45
   _crouchHeightDelta: 0.8
   _gravity: 20
+  _kickForce: 15
 --- !u!114 &3840543605560560878
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -100,6 +100,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: window (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6945952750206065104, guid: ad343c0729a1a284b9cfa0875d8f01ff,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.0288992
+      objectReference: {fileID: 0}
+    - target: {fileID: 6945952750206065104, guid: ad343c0729a1a284b9cfa0875d8f01ff,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.04298651
+      objectReference: {fileID: 0}
+    - target: {fileID: 6945952750206065104, guid: ad343c0729a1a284b9cfa0875d8f01ff,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.0064792237
+      objectReference: {fileID: 0}
+    - target: {fileID: 6945952750206065104, guid: ad343c0729a1a284b9cfa0875d8f01ff,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.005630573
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad343c0729a1a284b9cfa0875d8f01ff, type: 3}
 --- !u!4 &830371832695469317 stripped

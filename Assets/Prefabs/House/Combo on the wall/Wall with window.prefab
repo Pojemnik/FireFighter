@@ -251,6 +251,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: window
       objectReference: {fileID: 0}
+    - target: {fileID: 6945952750206065104, guid: ad343c0729a1a284b9cfa0875d8f01ff,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.0182216
+      objectReference: {fileID: 0}
+    - target: {fileID: 6945952750206065104, guid: ad343c0729a1a284b9cfa0875d8f01ff,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.010411939
+      objectReference: {fileID: 0}
+    - target: {fileID: 6945952750206065104, guid: ad343c0729a1a284b9cfa0875d8f01ff,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.0056306524
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad343c0729a1a284b9cfa0875d8f01ff, type: 3}
 --- !u!4 &5304594626345536898 stripped

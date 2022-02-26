@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class DestructibleObject : MonoBehaviour
 {
+    [Header("Config")]
     [SerializeField]
     private int _maxHealth;
 
-    [Header("Config")]
+    [Header("Prefabs")]
     [SerializeField]
     private List<GameObject> _damageLevels;
     [SerializeField]
@@ -17,7 +18,9 @@ public class DestructibleObject : MonoBehaviour
     [SerializeField]
     private GameObject _model;
 
+
     private int _currentHealth;
+
 
     public event System.EventHandler ObjectDestroyed;
 

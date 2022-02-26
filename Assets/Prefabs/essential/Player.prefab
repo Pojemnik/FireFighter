@@ -684,6 +684,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09262a697eae1b4ba6274c0f4257f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EventDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  m_EventChangeOxygenState:
+    m_PersistentCalls:
+      m_Calls: []
   _maxOxygen: 100
 --- !u!114 &1410308394592055754
 MonoBehaviour:
@@ -1075,6 +1081,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 4183427aa9c938d409806d1c52a86329,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4a86be6ed376c3a46b42de448224da5b, type: 2}
     - target: {fileID: 6671815088288003069, guid: 4183427aa9c938d409806d1c52a86329,
         type: 3}
       propertyPath: m_Layer

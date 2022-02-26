@@ -6,14 +6,18 @@ public class Fire : MonoBehaviour
 {
 
     private static float _fireStrengthRegainSpeed = 2f;
+    private static float _fireStrengthLoseSpeed = 4f;
 
     [SerializeField]
     private float _maxFireStrength;
     private float _currentFireStrength;
 
+    private ParticleSystem _particleSystem;
+
     // Start is called before the first frame update
     void Start()
     {
+        this._particleSystem = GetComponentInChildren<ParticleSystem>();
         _currentFireStrength = _maxFireStrength;
     }
 
@@ -30,10 +34,14 @@ public class Fire : MonoBehaviour
         }
         if (_currentFireStrength <= 0) 
         {
-            ParticleSystem thisParticleSystem = GetComponentInChildren<ParticleSystem>();
-            thisParticleSystem.Stop();
+            _particleSystem.Stop();
         }
 
-        
     }
+
+    public void Extinguish() {
+        Debug.LogErrorFormat("Tried to extinguish fire {0}, {1}", _currentFireStrength, _maxFireStrength);
+        _currentFireStrength -= _fireStrengthLoseSpeed * Time.deltaTime;
+    }
+
 }

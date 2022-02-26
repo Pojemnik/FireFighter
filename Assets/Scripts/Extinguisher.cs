@@ -15,12 +15,16 @@ public class Extinguisher : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        this.Extinguish();
+    }
+
     public void Extinguish()
     {
         foreach(Fire fire in _extinguishingZone.FiresInZone)
         {
-            //extinguish
-            //raycasts to stop extinguishing through walls
+            fire.Extinguish();
         }
     }
 }

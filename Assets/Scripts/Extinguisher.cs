@@ -7,6 +7,8 @@ public class Extinguisher : MonoBehaviour
     [SerializeField]
     private ExtingiushingZone _extinguishingZone;
 
+    private bool _extinguishing = false;
+
     private void Start()
     {
         if(_extinguishingZone == null)
@@ -15,9 +17,22 @@ public class Extinguisher : MonoBehaviour
         }
     }
 
+    public void StartExtinguishing()
+    {
+        _extinguishing = true;
+    }
+
+    public void StopExtingiushing()
+    {
+        _extinguishing = false;
+    }
+
     void Update()
     {
-        this.Extinguish();
+        if (_extinguishing)
+        {
+            Extinguish();
+        }
     }
 
     public void Extinguish()

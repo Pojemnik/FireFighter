@@ -42,7 +42,7 @@ public class Extinguisher : MonoBehaviour
     public void StartExtinguishing()
     {
         _extinguishing = true;
-        if(_currentFuel > 0)
+        if (_currentFuel > 0)
         {
             _particles.Play();
         }
@@ -67,7 +67,7 @@ public class Extinguisher : MonoBehaviour
             {
                 StopExtingiushing();
             }
-            if(_extinguishingZone.ChargerInZone)
+            if (_extinguishingZone.ChargerInZone)
             {
                 RefillFuel();
             }
@@ -88,7 +88,12 @@ public class Extinguisher : MonoBehaviour
     {
         foreach (Fire fire in _extinguishingZone.FiresInZone)
         {
-            fire.Extinguish();
+            Vector3 raycastDirection = fire.transform.position - transform.position;
+            Debug.DrawLine(transform.position, fire.transform.position, Color.magenta);
+            if (!Physics.Raycast(transform.position, raycastDirection, raycastDirection.magnitude, LayerMask.GetMask("Environment")))
+            {
+                fire.Extinguish();
+            }
         }
     }
 }

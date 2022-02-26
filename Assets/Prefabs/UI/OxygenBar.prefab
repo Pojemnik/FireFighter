@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 3370951001349451972}
   - component: {fileID: 3370951001349451974}
   - component: {fileID: 3370951001349451975}
+  - component: {fileID: 6169336892134866063}
   m_Layer: 0
   m_Name: HealthBarBar
   m_TagString: Untagged
@@ -150,7 +151,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 50}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3370951001349451974
 CanvasRenderer:
@@ -190,3 +191,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6169336892134866063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370951001349451973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9194c4f03f6e6f74a94b911d693dd4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minWidth: 0
+  maxWidth: 400
+  maxHealth: 100

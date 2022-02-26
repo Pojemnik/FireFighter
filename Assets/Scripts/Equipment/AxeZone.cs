@@ -6,22 +6,27 @@ using UnityEngine;
 public class AxeZone : MonoBehaviour
 {
     [HideInInspector]
-    public HashSet<DestructibleObject> ObjectsInZone { get; private set; }
+    public HashSet<DestructibleObject> DestructibleObjectsInZone { get; private set; }
+    [HideInInspector]
+    public bool OtherObjectsInZone { get => _otherObjectsCount != 0; }
+
+    private int _otherObjectsCount = 0;
 
     private void Awake()
     {
-        ObjectsInZone = new HashSet<DestructibleObject>();
+        DestructibleObjectsInZone = new HashSet<DestructibleObject>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         DestructibleObject obj = other.gameObject.GetComponent<DestructibleObject>();
-        obj.ObjectDestroyed += c_onDestroy;
         if(obj == null)
         {
+            _otherObjectsCount++;
             return;
         }
-        if (!ObjectsInZone.Add(obj))
+        obj.ObjectDestroyed += c_onDestroy;
+        if (!DestructibleObjectsInZone.Add(obj))
         {
             Debug.LogErrorFormat("Destructible object {0} added twice to the axe zone", other.gameObject.name);
         }
@@ -31,12 +36,17 @@ public class AxeZone : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         DestructibleObject obj = other.gameObject.GetComponent<DestructibleObject>();
-        obj.ObjectDestroyed -= c_onDestroy;
         if (obj == null)
         {
+            _otherObjectsCount--;
+            if(_otherObjectsCount < 0)
+            {
+                Debug.LogError("Less than zero other objects in the axe zone. This sould never hapen");
+            }
             return;
         }
-        if (!ObjectsInZone.Remove(obj))
+        obj.ObjectDestroyed -= c_onDestroy;
+        if (!DestructibleObjectsInZone.Remove(obj))
         {
             Debug.LogErrorFormat("Destructible object has {0} left the axe zone, but it was never inside", other.gameObject.name);
         }
@@ -45,6 +55,6 @@ public class AxeZone : MonoBehaviour
 
     private void c_onDestroy(object sender, EventArgs e)
     {
-        ObjectsInZone.Remove((DestructibleObject)sender);
+        DestructibleObjectsInZone.Remove((DestructibleObject)sender);
     }
 }

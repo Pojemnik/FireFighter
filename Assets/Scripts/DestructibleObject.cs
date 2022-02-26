@@ -19,25 +19,32 @@ public class DestructibleObject : MonoBehaviour
 
     private int _currentHealth;
 
+    public event System.EventHandler ObjectDestroyed;
+
+    [HideInInspector]
+    public Collider collider;
+
     private void Start()
     {
         _currentHealth = _maxHealth;
+        collider = GetComponent<Collider>();
     }
 
     public void Damage(Vector3 hitPosition, Vector3 hitNormal)
     {
         _currentHealth--;
         Instantiate(_hitParticles, hitPosition, Quaternion.LookRotation(hitNormal));
-        if(_currentHealth == 0)
+        if (_currentHealth == 0)
         {
             Instantiate(_fragments, transform.position, transform.rotation);
+            ObjectDestroyed?.Invoke(this, null);
             Destroy(gameObject);
         }
         else
         {
-            if(_damageLevels.Count >= _currentHealth)
+            if (_damageLevels.Count >= _currentHealth)
             {
-                ChangeModel(_damageLevels[_currentHealth]);
+                ChangeModel(_damageLevels[_currentHealth - 1]);
             }
         }
     }

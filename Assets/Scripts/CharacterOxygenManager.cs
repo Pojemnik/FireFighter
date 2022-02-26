@@ -7,7 +7,6 @@ using UnityEngine.Events;
 public class CharacterOxygenManager : MonoBehaviour
 {
 
-    private static float _speedOfLoosingOxygen = 1f;
     private static float _speedOfRegainingOxygen = 5f;
 
     private static float _maximumOxygenLoss = 3f;
@@ -35,9 +34,6 @@ public class CharacterOxygenManager : MonoBehaviour
 
         FiresWhichAffectPlayer = new HashSet<Fire>();
         _currentOxygen = _maxOxygen;
-
-        m_EventDeath = new UnityEvent();
-        m_EventChangeOxygenState = new UnityEvent<float>();
     }
 
     // Update is called once per frame
@@ -47,7 +43,7 @@ public class CharacterOxygenManager : MonoBehaviour
             return;
         }
 
-        if(FiresWhichAffectPlayer.Count == 0 && _currentOxygen <= 0f)
+        if(FiresWhichAffectPlayer.Count == 0)
         {
             _currentOxygen = _currentOxygen + _speedOfRegainingOxygen * Time.deltaTime > _maxOxygen
                 ? _maxOxygen
@@ -56,7 +52,7 @@ public class CharacterOxygenManager : MonoBehaviour
 
         foreach(Fire fire in FiresWhichAffectPlayer)
         {
-            _currentOxygen -= Mathf.Clamp(_speedOfLoosingOxygen * (_radiusOfOxygenLoss - Vector3.Distance(transform.position, fire.transform.position) * Time.deltaTime),
+            _currentOxygen -= Mathf.Clamp(fire.DamageRate * (_radiusOfOxygenLoss - Vector3.Distance(transform.position, fire.transform.position) * Time.deltaTime),
                                           0f,
                                           _maximumOxygenLoss * Time.deltaTime);
             Debug.LogFormat("Oxygen of the character {0}: {1} out of {2} after loosing it", gameObject.name, _currentOxygen, _maxOxygen);

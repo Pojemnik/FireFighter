@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _right;
     private Vector2 _inputSpeed;
     private bool _jump;
+    private float _defaultCenterHeight;
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -107,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _defaultCenterHeight = _characterController.center.y;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         UpdateDirectionVectors();
@@ -144,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CrouchStopCheck()
     {
-        return !Physics.Raycast(transform.position, Vector3.up, (_characterController.height + _crouchHeightDelta) / 2f, LayerMask.GetMask("Environment"));
+        return !Physics.Raycast(transform.position, Vector3.up, (_characterController.height + _crouchHeightDelta + _defaultCenterHeight) / 2f, LayerMask.GetMask("Environment"));
     }
 
     private void UpdateDirectionVectors()

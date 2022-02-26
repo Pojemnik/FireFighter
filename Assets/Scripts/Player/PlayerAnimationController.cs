@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField]
+    private Axe _axe;
+
     private Animator _animator;
+
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     public void StartWalking()
     {
@@ -40,5 +48,10 @@ public class PlayerAnimationController : MonoBehaviour
     public void StopExtinguishing()
     {
         _animator.SetBool("Extinguisher", false);
+    }
+
+    private void OnAxeUseEvent()
+    {
+        _axe.Use();
     }
 }

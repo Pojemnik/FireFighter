@@ -7,8 +7,6 @@ public class PlayerInputAdapter : MonoBehaviour
 {
     [Header("References")]
     [SerializeField]
-    private Axe _axe;
-    [SerializeField]
     private Extinguisher _extinguisher;
     [SerializeField]
     private PlayerAnimationController _animationController;
@@ -17,7 +15,6 @@ public class PlayerInputAdapter : MonoBehaviour
     {
         if(context.started)
         {
-            _axe.Use();
             _animationController.UseAxe();
         }
     }

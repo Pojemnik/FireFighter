@@ -661,8 +661,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3885717755111242520}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 1410308394592055754}
+        m_TargetAssemblyTypeName: PlayerInputAdapter, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -677,8 +677,8 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3885717755111242520}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 1410308394592055754}
+        m_TargetAssemblyTypeName: PlayerInputAdapter, Assembly-CSharp
         m_MethodName: Look
         m_Mode: 0
         m_Arguments:
@@ -749,8 +749,8 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3885717755111242520}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 1410308394592055754}
+        m_TargetAssemblyTypeName: PlayerInputAdapter, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -765,8 +765,8 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3885717755111242520}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 1410308394592055754}
+        m_TargetAssemblyTypeName: PlayerInputAdapter, Assembly-CSharp
         m_MethodName: Crouch
         m_Mode: 0
         m_Arguments:
@@ -821,6 +821,7 @@ MonoBehaviour:
   _crouchHeightDelta: 0.8
   _gravity: 20
   _kickForce: 15
+  MovementEnabled: 1
 --- !u!114 &3840543605560560878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,6 +855,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _extinguisher: {fileID: 7294403230695837595}
   _animationController: {fileID: 4149991459026674553}
+  _movement: {fileID: 3885717755111242520}
+  EnableMovement: 1
 --- !u!1001 &2715821210839668832
 PrefabInstance:
   m_ObjectHideFlags: 0

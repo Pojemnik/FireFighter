@@ -33,6 +33,9 @@ public class PlayerMovement : MonoBehaviour
     public System.EventHandler Landed;
     public System.EventHandler<bool> WalkingStateChanged;
 
+    [HideInInspector]
+    public bool MovementEnabled = true;
+
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
     private float _rotationX = 0;
@@ -46,50 +49,50 @@ public class PlayerMovement : MonoBehaviour
     private bool _lastGroundedState = true;
     private bool _lastWalkingState = true;
 
-    public void Move(InputAction.CallbackContext context)
+    public void Move(Vector2 value)
     {
-        _inputSpeed = context.ReadValue<Vector2>();
+        _inputSpeed = value;
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void Jump()
     {
-        if (context.started)
-        {
             if (_characterController.isGrounded)
             {
                 _jump = true;
             }
-        }
     }
 
-    public void Look(InputAction.CallbackContext context)
+    public void Look(Vector2 direction)
     {
-        Vector2 lookDirection = context.ReadValue<Vector2>();
-        _rotationX += -lookDirection.y * _cameraSesitivity;
+        _rotationX += -direction.y * _cameraSesitivity;
         _rotationX = Mathf.Clamp(_rotationX, -_lookXLimit, _lookXLimit);
         _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
-        transform.rotation *= Quaternion.Euler(0, lookDirection.x * _cameraSesitivity, 0);
+        transform.rotation *= Quaternion.Euler(0, direction.x * _cameraSesitivity, 0);
         UpdateDirectionVectors();
     }
 
-    public void Crouch(InputAction.CallbackContext context)
+    public void StopCrouching()
     {
-        if (context.started && !_crouching)
-        {
-            _crouching = _crouchingInput = true;
-            StartChrouching();
-        }
-        if (context.canceled && _crouching)
+        if (_crouching)
         {
             _crouchingInput = false;
             if (CrouchStopCheck())
             {
-                StopCrouching();
+                StopCrouchingInternal();
             }
         }
     }
 
-    private void StopCrouching()
+    public void StartCrouching()
+    {
+        if (!_crouching)
+        {
+            _crouching = _crouchingInput = true;
+            StartChrouchingInternal();
+        }
+    }
+
+    private void StopCrouchingInternal()
     {
         _crouching = false;
         Vector3 cameraPos = _playerCamera.transform.position;
@@ -101,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         _characterController.center = center;
     }
 
-    private void StartChrouching()
+    private void StartChrouchingInternal()
     {
         Vector3 cameraPos = _playerCamera.transform.position;
         cameraPos.y -= _crouchHeightDelta;
@@ -116,8 +119,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _defaultCenterHeight = _characterController.center.y;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         UpdateDirectionVectors();
     }
 

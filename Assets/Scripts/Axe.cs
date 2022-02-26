@@ -13,17 +13,7 @@ public class Axe : MonoBehaviour
         {
             throw new System.NullReferenceException("No extinguishing zone in fire extinguisher");
         }
-        StartCoroutine(AttackCoroutine());
-    }
-
-    IEnumerator AttackCoroutine()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(2);
-            Use();
-        }
-    }    
+    }   
 
     public void Use()
     {

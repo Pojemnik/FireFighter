@@ -23,7 +23,6 @@ public class ExtingiushingZone : MonoBehaviour
             if(other.gameObject.CompareTag("Charger"))
             {
                 ChargerInZone = true;
-                Debug.Log("Charger in");
             }
             return;
         }
@@ -32,7 +31,6 @@ public class ExtingiushingZone : MonoBehaviour
         {
             Debug.LogErrorFormat("Fire {0} added twice to the extinguishing zone", other.gameObject.name);
         }
-        Debug.Log("Fire added to zone");
     }
 
     private void OnTriggerExit(Collider other)
@@ -43,7 +41,6 @@ public class ExtingiushingZone : MonoBehaviour
             if (other.gameObject.CompareTag("Charger"))
             {
                 ChargerInZone = false;
-                Debug.Log("Charger out");
             }
             return;
         }
@@ -52,7 +49,6 @@ public class ExtingiushingZone : MonoBehaviour
         {
             Debug.LogErrorFormat("Fire has {0} left the extinguishing zone, but it was never inside", other.gameObject.name);
         }
-        Debug.Log("Fire removed from zone");
     }
 
     private void c_onDestroy(object sender, EventArgs e)

@@ -7,6 +7,8 @@ public class ExtingiushingZone : MonoBehaviour
 {
     [HideInInspector]
     public HashSet<Fire> FiresInZone { get; private set; }
+    [HideInInspector]
+    public bool ChargerInZone;
 
     private void Awake()
     {
@@ -16,11 +18,16 @@ public class ExtingiushingZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Fire fire = other.gameObject.GetComponent<Fire>();
-        fire.FireExtinguished += c_onDestroy;
         if(fire == null)
         {
+            if(other.gameObject.CompareTag("Charger"))
+            {
+                ChargerInZone = true;
+                Debug.Log("Charger in");
+            }
             return;
         }
+        fire.FireExtinguished += c_onDestroy;
         if (!FiresInZone.Add(fire))
         {
             Debug.LogErrorFormat("Fire {0} added twice to the extinguishing zone", other.gameObject.name);
@@ -33,13 +40,18 @@ public class ExtingiushingZone : MonoBehaviour
         Fire fire = other.gameObject.GetComponent<Fire>();
         if (fire == null)
         {
+            if (other.gameObject.CompareTag("Charger"))
+            {
+                ChargerInZone = false;
+                Debug.Log("Charger out");
+            }
             return;
         }
+        fire.FireExtinguished -= c_onDestroy;
         if (!FiresInZone.Remove(fire))
         {
             Debug.LogErrorFormat("Fire has {0} left the extinguishing zone, but it was never inside", other.gameObject.name);
         }
-        fire.FireExtinguished -= c_onDestroy;
         Debug.Log("Fire removed from zone");
     }
 

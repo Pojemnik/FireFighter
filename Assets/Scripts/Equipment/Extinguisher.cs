@@ -48,10 +48,17 @@ public class Extinguisher : MonoBehaviour
 
     void Update()
     {
-        if (_extinguishing && _currentFuel > 0)
+        if (_extinguishing)
         {
-            Extinguish();
-            UpdateFuelLevel();
+            if (_currentFuel > 0)
+            {
+                Extinguish();
+                UpdateFuelLevel();
+            }
+            if(_extinguishingZone.ChargerInZone)
+            {
+                RefillFuel();
+            }
         }
     }
 

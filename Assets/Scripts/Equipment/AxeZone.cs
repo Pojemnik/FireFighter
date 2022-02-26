@@ -30,7 +30,6 @@ public class AxeZone : MonoBehaviour
         {
             Debug.LogErrorFormat("Destructible object {0} added twice to the axe zone", other.gameObject.name);
         }
-        Debug.Log("Destructible object added to zone");
     }
 
     private void OnTriggerExit(Collider other)
@@ -50,7 +49,6 @@ public class AxeZone : MonoBehaviour
         {
             Debug.LogErrorFormat("Destructible object has {0} left the axe zone, but it was never inside", other.gameObject.name);
         }
-        Debug.Log("Destructible object removed from zone");
     }
 
     private void c_onDestroy(object sender, EventArgs e)

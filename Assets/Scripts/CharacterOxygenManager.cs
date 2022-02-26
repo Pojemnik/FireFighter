@@ -55,7 +55,7 @@ public class CharacterOxygenManager : MonoBehaviour
             _currentOxygen -= Mathf.Clamp(fire.DamageRate * (_radiusOfOxygenLoss - Vector3.Distance(transform.position, fire.transform.position) * Time.deltaTime),
                                           0f,
                                           _maximumOxygenLoss * Time.deltaTime);
-            Debug.LogFormat("Oxygen of the character {0}: {1} out of {2} after loosing it", gameObject.name, _currentOxygen, _maxOxygen);
+            //Debug.LogFormat("Oxygen of the character {0}: {1} out of {2} after loosing it", gameObject.name, _currentOxygen, _maxOxygen);
         }
 
         m_EventChangeOxygenState.Invoke(_currentOxygen);
@@ -79,7 +79,7 @@ public class CharacterOxygenManager : MonoBehaviour
         {
             Debug.LogErrorFormat("Fire {0} added twice to the zone of fires which affect character", other.gameObject.name);
         }
-        Debug.Log("Fire affected a Character");
+        //Debug.Log("Fire affected a Character");
     }
 
     private void OnTriggerExit(Collider other)
@@ -94,7 +94,7 @@ public class CharacterOxygenManager : MonoBehaviour
             Debug.LogErrorFormat("Fire has {0} left the zone of fires affected by character, but it was never inside", other.gameObject.name);
         }
         fire.FireExtinguished -= c_onDestroy;
-        Debug.Log("Fire removed from fires by which character is affected");
+        //Debug.Log("Fire removed from fires by which character is affected");
     }
 
     private void c_onDestroy(object sender, EventArgs e)

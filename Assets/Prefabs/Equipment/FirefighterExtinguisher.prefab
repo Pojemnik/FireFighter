@@ -145,28 +145,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6673577736233021536, guid: 9c003bab13a712a438a15d5c7b743049,
         type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 0.01
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inSlope
+      value: 0.88269734
       objectReference: {fileID: 0}
     - target: {fileID: 6673577736233021536, guid: 9c003bab13a712a438a15d5c7b743049,
         type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6673577736233021536, guid: 9c003bab13a712a438a15d5c7b743049,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6673577736233021536, guid: 9c003bab13a712a438a15d5c7b743049,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 6673577736233021536, guid: 9c003bab13a712a438a15d5c7b743049,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.1
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
+      value: 0.88269734
       objectReference: {fileID: 0}
     - target: {fileID: 8683299894173426167, guid: 9c003bab13a712a438a15d5c7b743049,
         type: 3}
@@ -186,12 +171,12 @@ PrefabInstance:
     - target: {fileID: 8695515670864143088, guid: 9c003bab13a712a438a15d5c7b743049,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.034
       objectReference: {fileID: 0}
     - target: {fileID: 8695515670864143088, guid: 9c003bab13a712a438a15d5c7b743049,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.171
+      value: 0.136
       objectReference: {fileID: 0}
     - target: {fileID: 8695515670864143088, guid: 9c003bab13a712a438a15d5c7b743049,
         type: 3}

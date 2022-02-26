@@ -1,0 +1,5 @@
+Linki do dźwięków (niby nie trzeba, ale można):
+https://opengameart.org/content/steps-in-wood-floor - chodzenie
+https://opengameart.org/content/jump-landing-sound - spadanie
+https://opengameart.org/content/37-hitspunches - uderzenia
+https://opengameart.org/content/fireplace-sound-loop - ogień

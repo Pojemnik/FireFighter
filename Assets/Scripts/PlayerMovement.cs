@@ -27,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Other")]
     [SerializeField]
     private float _gravity;
+    [SerializeField]
+    private float _kickForce;
+
+    public System.EventHandler Landed;
+    public System.EventHandler<bool> WalkingStateChanged;
 
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
@@ -38,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _inputSpeed;
     private bool _jump;
     private float _defaultCenterHeight;
+    private bool _lastGroundedState = true;
+    private bool _lastWalkingState = true;
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -116,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(_crouching && !_crouchingInput)
+        if (_crouching && !_crouchingInput)
         {
             if (CrouchStopCheck())
             {
@@ -142,6 +149,39 @@ public class PlayerMovement : MonoBehaviour
             _moveDirection.y -= _gravity * Time.deltaTime;
         }
         _characterController.Move(_moveDirection * Time.deltaTime);
+        SendEventIfLanded();
+        _lastGroundedState = _characterController.isGrounded;
+        SendWalkingStateEvent();
+    }
+
+    private void SendWalkingStateEvent()
+    {
+        if (_lastWalkingState == true && (!_characterController.isGrounded || _inputSpeed == Vector2.zero))
+        {
+            WalkingStateChanged?.Invoke(this, false);
+            _lastWalkingState = false;
+        }
+        if (_lastWalkingState == false && _characterController.isGrounded && _inputSpeed != Vector2.zero)
+        {
+            WalkingStateChanged?.Invoke(this, true);
+            _lastWalkingState = true;
+        }
+    }
+
+    private void SendEventIfLanded()
+    {
+        if (_lastGroundedState == false && _characterController.isGrounded == true)
+        {
+            Landed?.Invoke(this, null);
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.rigidbody != null)
+        {
+            hit.rigidbody.AddForce((hit.point - transform.position).normalized * _kickForce);
+        }
     }
 
     private bool CrouchStopCheck()

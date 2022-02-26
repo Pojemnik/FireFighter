@@ -34,5 +34,4 @@ public class HealthBarController : MonoBehaviour
         rect = GetComponent<RectTransform>();
         rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxWidth);
     }
-
 }

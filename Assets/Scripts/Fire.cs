@@ -12,6 +12,10 @@ public class Fire : MonoBehaviour
     private static float _fireStrengthLoseSpeed = 4f;
 
     [SerializeField]
+    private float _damageRate = 2f;
+    public float DamageRate {get {return _damageRate;}}
+
+    [SerializeField]
     private float _maxFireStrength;
     private float _currentFireStrength;
 

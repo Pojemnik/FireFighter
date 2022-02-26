@@ -39,11 +39,13 @@ public class ExtingiushingZone : MonoBehaviour
         {
             Debug.LogErrorFormat("Fire has {0} left the extinguishing zone, but it was never inside", other.gameObject.name);
         }
+        fire.FireExtinguished -= c_onDestroy;
         Debug.Log("Fire removed from zone");
     }
 
     private void c_onDestroy(object sender, EventArgs e)
     {
         FiresInZone.Remove((Fire)sender);
+        ((Fire)sender).FireExtinguished -= c_onDestroy;
     }
 }

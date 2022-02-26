@@ -43,7 +43,8 @@ public class Fire : MonoBehaviour
 
     }
 
-    public void Extinguish() {
+    public void Extinguish() 
+    {
         Debug.LogFormat("Tried to extinguish fire {0}, {1}", _currentFireStrength, _maxFireStrength);
         _currentFireStrength -= _fireStrengthLoseSpeed * Time.deltaTime;
     }

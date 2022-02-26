@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class ExtingiushingZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Fire fire = other.gameObject.GetComponent<Fire>();
+        fire.FireExtinguished += c_onDestroy;
         if(fire == null)
         {
             return;
@@ -38,5 +40,10 @@ public class ExtingiushingZone : MonoBehaviour
             Debug.LogErrorFormat("Fire has {0} left the extinguishing zone, but it was never inside", other.gameObject.name);
         }
         Debug.Log("Fire removed from zone");
+    }
+
+    private void c_onDestroy(object sender, EventArgs e)
+    {
+        FiresInZone.Remove((Fire)sender);
     }
 }

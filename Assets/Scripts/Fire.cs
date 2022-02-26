@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
+
+    public event EventHandler FireExtinguished;
 
     private static float _fireStrengthRegainSpeed = 2f;
     private static float _fireStrengthLoseSpeed = 4f;
@@ -34,14 +37,21 @@ public class Fire : MonoBehaviour
         }
         if (_currentFireStrength <= 0) 
         {
-            _particleSystem.Stop();
+            OnFireExtinguished(null);
+            Destroy(gameObject);   
         }
 
     }
 
     public void Extinguish() {
-        Debug.LogErrorFormat("Tried to extinguish fire {0}, {1}", _currentFireStrength, _maxFireStrength);
+        Debug.LogFormat("Tried to extinguish fire {0}, {1}", _currentFireStrength, _maxFireStrength);
         _currentFireStrength -= _fireStrengthLoseSpeed * Time.deltaTime;
+    }
+
+    protected virtual void OnFireExtinguished(EventArgs e)
+    {
+        EventHandler handler = FireExtinguished;
+        handler?.Invoke(this, e);
     }
 
 }

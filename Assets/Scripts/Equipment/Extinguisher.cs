@@ -7,6 +7,8 @@ public class Extinguisher : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private ExtingiushingZone _extinguishingZone;
+    [SerializeField]
+    private ParticleSystem _particles;
 
     [Header("Fuel")]
     [SerializeField]
@@ -28,6 +30,7 @@ public class Extinguisher : MonoBehaviour
         }
         _currentFuel = _maxFuel;
         FuelPercentageUpdatedEvent.Invoke(100);
+        _particles.Stop();
     }
 
     public void RefillFuel()
@@ -39,11 +42,16 @@ public class Extinguisher : MonoBehaviour
     public void StartExtinguishing()
     {
         _extinguishing = true;
+        if(_currentFuel > 0)
+        {
+            _particles.Play();
+        }
     }
 
     public void StopExtingiushing()
     {
         _extinguishing = false;
+        _particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 
     void Update()
@@ -54,6 +62,10 @@ public class Extinguisher : MonoBehaviour
             {
                 Extinguish();
                 UpdateFuelLevel();
+            }
+            else
+            {
+                StopExtingiushing();
             }
             if(_extinguishingZone.ChargerInZone)
             {

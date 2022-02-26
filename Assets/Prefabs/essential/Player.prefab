@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9440559982beefb40bd3924975d90d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChargerInZone: 0
 --- !u!1 &3885717755044492120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,6 +1395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2933689259272161437, guid: bfa0f11ada0ddf5459899df4a8e1707d,
         type: 3}
+      propertyPath: _particles
+      value: 
+      objectReference: {fileID: 1034139730108420572}
+    - target: {fileID: 2933689259272161437, guid: bfa0f11ada0ddf5459899df4a8e1707d,
+        type: 3}
       propertyPath: _extinguishingZone
       value: 
       objectReference: {fileID: 3885717754331868295}
@@ -1414,6 +1420,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfa0f11ada0ddf5459899df4a8e1707d, type: 3}
+--- !u!198 &1034139730108420572 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4888203689114113754, guid: bfa0f11ada0ddf5459899df4a8e1707d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5587950921500690182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7294403230695837595 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2933689259272161437, guid: bfa0f11ada0ddf5459899df4a8e1707d,

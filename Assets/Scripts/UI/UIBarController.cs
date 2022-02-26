@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIBarController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class UIBarController : MonoBehaviour
         Vertical,
         Horizontal
     }
+
+    public Sprite deathSprite;
 
     [Header("Bar settings")]
     [Tooltip("Size of bar when value is 0")]
@@ -26,21 +29,31 @@ public class UIBarController : MonoBehaviour
     private float _maxValue;
 
     private RectTransform _rect;
+    private Image _image;
 
     public void OnValueChange(float value)
     {
         if (value < 0)
         {
-            value = 0;
+            return;
         }
+
         float precent = value / _maxValue;
         float size = Mathf.Lerp(_minSize, _maxSize, precent);
         _rect.SetSizeWithCurrentAnchors((_orientation == BarOrientation.Horizontal) ? RectTransform.Axis.Horizontal : RectTransform.Axis.Vertical, size);
+    }
+
+    public void OnDeath()
+    {
+        this._image.sprite = deathSprite;
+        this._image.color = Color.white;
+        _rect.SetSizeWithCurrentAnchors((_orientation == BarOrientation.Horizontal) ? RectTransform.Axis.Horizontal : RectTransform.Axis.Vertical, _rect.rect.height);
     }
 
     private void Awake()
     {
         _rect = GetComponent<RectTransform>();
         _rect.SetSizeWithCurrentAnchors((_orientation == BarOrientation.Horizontal) ? RectTransform.Axis.Horizontal : RectTransform.Axis.Vertical, _maxSize);
+        _image = GetComponent<Image>();
     }
 }

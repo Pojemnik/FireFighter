@@ -38,7 +38,6 @@ public class PlayerInteractor : MonoBehaviour
                         TargetStateChanged.Invoke(true);
                     }
                 }
-                Debug.LogFormat("Looking at NPC {0}", hit.transform.gameObject.name);
             }
             else
             {

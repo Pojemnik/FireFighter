@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3529084616601446292}
   - component: {fileID: 5985179395920870435}
   - component: {fileID: 3871987290014711697}
+  - component: {fileID: 8703627228549818306}
   m_Layer: 6
   m_Name: Fire
   m_TagString: Untagged
@@ -3791,7 +3792,7 @@ ParticleSystem:
     radiusScale: 0.25
     collidesWith:
       serializedVersion: 2
-      m_Bits: 3575
+      m_Bits: 3511
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -4826,7 +4827,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6728521674262379448}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.6142888
@@ -4845,7 +4846,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4998,7 +4999,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 3750
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 8.37e-43, y: 9.4e-44, z: 0, w: -6.587766e-10}
+  m_BoundingSphereOverride: {x: 4.5904e-41, y: 0, z: 0, w: -0.00000005087054}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5125,6 +5126,22 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
+--- !u!54 &8703627228549818306
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6728521674262379448}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &54255828894557177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5195,7 +5212,7 @@ PrefabInstance:
     - target: {fileID: 6728521674262379448, guid: 03f329464d3952842967b510dc648029,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03f329464d3952842967b510dc648029, type: 3}

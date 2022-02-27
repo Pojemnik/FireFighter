@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     private float _defaultCenterHeight;
     private bool _lastGroundedState = true;
     private bool _lastWalkingState = true;
+    private bool _carrying = false;
 
     public void Move(Vector2 value)
     {
@@ -96,6 +97,11 @@ public class PlayerMovement : MonoBehaviour
             StartChrouchingInternal();
         }
     }
+    
+    public void SetCarrying(bool state)
+    {
+        _carrying = state;
+    }
 
     private void StopCrouchingInternal()
     {
@@ -138,8 +144,8 @@ public class PlayerMovement : MonoBehaviour
         }
         float movementDirectionY = _moveDirection.y;
         Vector3 currentSpeed;
-        currentSpeed.x = (_crouching ? _slowSpeed : _normalSpeed) * _inputSpeed.y;
-        currentSpeed.y = (_crouching ? _slowSpeed : _normalSpeed) * _inputSpeed.x;
+        currentSpeed.x = ((_crouching || _carrying) ? _slowSpeed : _normalSpeed) * _inputSpeed.y;
+        currentSpeed.y = ((_crouching || _carrying) ? _slowSpeed : _normalSpeed) * _inputSpeed.x;
         _moveDirection = (_forward * currentSpeed.x) + (_right * currentSpeed.y);
         if (_jump)
         {

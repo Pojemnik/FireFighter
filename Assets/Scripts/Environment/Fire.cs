@@ -28,12 +28,34 @@ public class Fire : MonoBehaviour
     private float _currentFireStrength;
 
     private ParticleSystem _particleSystem;
+    private readonly struct ParticleSystemInformation
+    {
+        public float startSize { get; }
+        public float startLifetime { get; }
+        public float rateOverTime { get; }
+
+        public ParticleSystemInformation(float startSize, float startLifeTime, float rateOverTime)
+        {
+            this.startSize = startSize;
+            this.startLifetime = startLifeTime;
+            this.rateOverTime = rateOverTime;
+        }
+
+    }
+
+    private ParticleSystemInformation _particleSystemInitialInformation;
+    private ParticleSystemInformation _particleSystemLethalInformation = new ParticleSystemInformation(0.6f, 0.3f, 20f);
 
     // Start is called before the first frame update
     void Start()
     {
-        this._particleSystem = GetComponentInChildren<ParticleSystem>();
         _currentFireStrength = _maxFireStrength;
+
+        this._particleSystem = GetComponentInChildren<ParticleSystem>();
+        var main =_particleSystem.main;
+        var emission = _particleSystem.emission;
+
+        _particleSystemInitialInformation = new ParticleSystemInformation(main.startSize.Evaluate(1), main.startLifetime.Evaluate(1), emission.rateOverTime.Evaluate(1));
     }
 
     // Update is called once per frame
@@ -108,6 +130,13 @@ public class Fire : MonoBehaviour
             fireStateChangedEventArgs.fireState = FireState.Medium;
             OnFireStateChanged(fireStateChangedEventArgs);
         }
+
+        var main = _particleSystem.main;
+        main.startSize = _particleSystemLethalInformation.startSize + (_particleSystemInitialInformation.startSize - _particleSystemLethalInformation.startSize) * (_currentFireStrength / _maxFireStrength);
+        main.startLifetime = _particleSystemLethalInformation.startLifetime + (_particleSystemInitialInformation.startLifetime - _particleSystemLethalInformation.startLifetime) * (_currentFireStrength / _maxFireStrength);
+        var emission = _particleSystem.emission;
+        emission.rateOverTime = _particleSystemLethalInformation.rateOverTime + (_particleSystemInitialInformation.rateOverTime - _particleSystemLethalInformation.rateOverTime) * (_currentFireStrength / _maxFireStrength);
+
     }
 
 }

@@ -8,6 +8,7 @@ public class NPCController : MonoBehaviour
     private NPCManager _manager;
     private CharacterOxygenManager _oxygen;
     private bool _safeToDrop = false;
+    private bool _dead;
 
     public UnityEngine.Events.UnityEvent NPCSaved;
 
@@ -16,8 +17,32 @@ public class NPCController : MonoBehaviour
         _manager = FindObjectOfType<NPCManager>();
         _oxygen = GetComponent<CharacterOxygenManager>();
         _manager.AddLivingNPC();
-        _oxygen.m_EventDeath.AddListener(_manager.OnNPCDeath);
+        _oxygen.m_EventDeath.AddListener(OnDeath);
     }
+
+    private void OnDeath()
+    {
+        _manager.OnNPCDeath();
+        gameObject.tag = "Untagged";
+        _dead = true;
+
+    }
+
+    public void OnPickup()
+    {
+        SetChildernActive(false);
+    }
+
+    private void SetChildernActive(bool active)
+    {
+        int i = 0;
+        while (i < transform.childCount)
+        {
+            transform.GetChild(i).gameObject.SetActive(active);
+            i++;
+        }
+    }
+
 
     public void SaveNPC()
     {
@@ -27,7 +52,8 @@ public class NPCController : MonoBehaviour
 
     public void OnDrop()
     {
-        if(_safeToDrop)
+        SetChildernActive(true);
+        if (_safeToDrop && !_dead)
         {
             SaveNPC();
             gameObject.tag = "Untagged";

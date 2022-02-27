@@ -21,7 +21,7 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactionRange, LayerMask.GetMask("Environment")))
+        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactionRange, LayerMask.GetMask("Victims")))
         {
             if (hit.transform.gameObject.CompareTag("NPC"))
             {

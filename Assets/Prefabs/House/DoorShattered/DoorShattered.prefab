@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 980793993739145068}
   - component: {fileID: 137950373931131065}
   - component: {fileID: 7458807695111050353}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorPart6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238580630896586270}
   - component: {fileID: -3382758298460488922}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorShattered
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 8403827624909360739}
   - component: {fileID: 6938123383517048023}
   - component: {fileID: 5101882875233565648}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorPart1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 2311675162968892212}
   - component: {fileID: 3972278260859335163}
   - component: {fileID: 3123912310907853562}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorPart4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 882166421579349725}
   - component: {fileID: 4448757823160493854}
   - component: {fileID: 1491766200888171951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorPart5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 3171227016539217443}
   - component: {fileID: 4637935059182388684}
   - component: {fileID: 7449266780980921356}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorPart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 6204426424877039507}
   - component: {fileID: 4314998379703666647}
   - component: {fileID: 1221048860040320714}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorPart7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 1746899792332323020}
   - component: {fileID: 5458431202589271889}
   - component: {fileID: 6732506794241270617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorPart3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 2925865541333897019}
   - component: {fileID: 6361086757842223944}
   - component: {fileID: 1888733806807381073}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorPart8
   m_TagString: Untagged
   m_Icon: {fileID: 0}

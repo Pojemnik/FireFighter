@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2037.8154, g: 2021.873, b: 2471.418, a: 1}
+  m_IndirectSpecularColor: {r: 2025.6738, g: 1991.6582, b: 2398.3125, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -236,14 +236,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1294769779}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Show
+      objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -266,8 +286,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PlayerAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: GameOverScreenController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIBarController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}

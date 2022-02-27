@@ -49,6 +49,17 @@ public class PauseManager : MonoBehaviour
         LockPause?.Invoke(this, null);
     }
 
+    public void LockAll()
+    {
+        _pauseState = true;
+        _cursorManager.UnlockCursor();
+        _gameUI.SetActive(false);
+        Time.timeScale = 0;
+        _playerInputAdapter.EnableMovement = false;
+        AudioListener.pause = true;
+        LockPause?.Invoke(this, null);
+    }
+
     private void Pause()
     {
         _pauseState = true;

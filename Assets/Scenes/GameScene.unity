@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2026.3086, g: 1994.8457, b: 2406.7734, a: 1}
+  m_IndirectSpecularColor: {r: 2023.498, g: 1990.7832, b: 2399.0195, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -234,15 +234,20 @@ PrefabInstance:
       propertyPath: FuelPercentageUpdatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+    - target: {fileID: 2362543803489634719, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      propertyPath: steps.Array.data[0].position.y
+      value: -0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+    - target: {fileID: 2362543803489634719, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      propertyPath: steps.Array.data[1].position.y
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362543803489634719, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: steps.Array.data[2].position.y
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
@@ -251,19 +256,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1294769779}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Show
-      objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -286,23 +281,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameOverScreenController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIBarController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
@@ -2010,6 +1990,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3529084616601446292, guid: 67b8f437edfce924086c33cddd30a5b2,
+        type: 3}
+      propertyPath: _damageRate
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529084616601446292, guid: 67b8f437edfce924086c33cddd30a5b2,
+        type: 3}
+      propertyPath: _maxFireStrength
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985179395920870435, guid: 67b8f437edfce924086c33cddd30a5b2,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -2.1742556
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985179395920870435, guid: 67b8f437edfce924086c33cddd30a5b2,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 4.5905e-41
+      objectReference: {fileID: 0}
     - target: {fileID: 6573560819617115382, guid: 67b8f437edfce924086c33cddd30a5b2,
         type: 3}
       propertyPath: m_RootOrder
@@ -2554,6 +2554,7 @@ MonoBehaviour:
   _resetLevelButton: {fileID: 596496342}
   _unloader: {fileID: 1244222197}
   _pauseManager: {fileID: 1244222195}
+  _blendInTime: 2
 --- !u!1001 &1482553393
 PrefabInstance:
   m_ObjectHideFlags: 0

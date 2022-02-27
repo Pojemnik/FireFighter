@@ -14,6 +14,12 @@ public class GameOverScreenController : MonoBehaviour
     [SerializeField]
     private PauseManager _pauseManager;
 
+    [Header("Config")]
+    [SerializeField]
+    private float _blendInTime;
+
+    private UnityEngine.UI.Image _image;
+
     private void Awake()
     {
         _backToMenuButton.onClick.AddListener(() =>
@@ -24,11 +30,24 @@ public class GameOverScreenController : MonoBehaviour
         {
             _unloader.GoToLevel();
         });
+        _image = GetComponent<UnityEngine.UI.Image>();
     }
 
     public void Show()
     {
         gameObject.SetActive(true);
-        _pauseManager.PauseWithoutShowingUI();
+        _backToMenuButton.gameObject.SetActive(false);
+        _resetLevelButton.gameObject.SetActive(false);
+        StartCoroutine(ShowScreenCoroutine());
+    }
+
+    private IEnumerator ShowScreenCoroutine()
+    {
+        _image.CrossFadeAlpha(0, 0, true);
+        _image.CrossFadeAlpha(1, 2, true);
+        _pauseManager.LockWithoutPause();
+        yield return new WaitForSecondsRealtime(_blendInTime);
+        _backToMenuButton.gameObject.SetActive(true);
+        _resetLevelButton.gameObject.SetActive(true);
     }
 }

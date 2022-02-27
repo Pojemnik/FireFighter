@@ -18,6 +18,8 @@ public class PauseManager : MonoBehaviour
 
     private bool _pauseState = false;
 
+    public event System.EventHandler LockPause;
+
     private void Start()
     {
         _gameUI.SetActive(true);
@@ -39,12 +41,12 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void PauseWithoutShowingUI()
+    public void LockWithoutPause()
     {
         _cursorManager.UnlockCursor();
-        Time.timeScale = 0;
         AudioListener.pause = true;
         _playerInputAdapter.EnableMovement = false;
+        LockPause?.Invoke(this, null);
     }
 
     private void Pause()

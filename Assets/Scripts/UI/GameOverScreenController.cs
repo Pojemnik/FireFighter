@@ -24,7 +24,6 @@ public class GameOverScreenController : MonoBehaviour
         {
             _unloader.GoToLevel();
         });
-        //gameObject.SetActive(false);
     }
 
     public void Show()

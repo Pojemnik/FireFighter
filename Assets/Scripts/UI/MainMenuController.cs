@@ -7,6 +7,5 @@ public class MainMenuController : MonoBehaviour
 {
     private void Awake()
     {
-        //SceneManager.UnloadSceneAsync("LoadingScene");
     }
 }

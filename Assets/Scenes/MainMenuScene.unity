@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuScene: MainMenu
-  _levelScene: GameScene
+  _levelScene: MainScene'
 --- !u!1 &504562744
 GameObject:
   m_ObjectHideFlags: 0

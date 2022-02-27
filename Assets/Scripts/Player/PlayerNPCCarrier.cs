@@ -13,6 +13,7 @@ public class PlayerNPCCarrier : MonoBehaviour
 
     private bool _isCarrying = false;
     private NPCController _npc;
+    private Rigidbody _npcRB;
 
     public void PickUpNPC(NPCController npc)
     {
@@ -20,6 +21,9 @@ public class PlayerNPCCarrier : MonoBehaviour
         {
             _npc = npc;
             _isCarrying = true;
+            _npcRB = _npc.GetComponent<Rigidbody>();
+            _npcRB.isKinematic = true;
+            _npcRB.useGravity = false;
             _npc.transform.parent = transform;
             TargetStateChanged.Invoke(true);
         }
@@ -31,6 +35,8 @@ public class PlayerNPCCarrier : MonoBehaviour
         {
             _npc.OnDrop();
             _npc.transform.parent = null;
+            _npcRB.isKinematic = false;
+            _npcRB.useGravity = true;
             _npc = null;
             _isCarrying = false;
             TargetStateChanged.Invoke(false);

@@ -12,6 +12,8 @@ public class PlayerInputAdapter : MonoBehaviour
     private PlayerAnimationController _animationController;
     [SerializeField]
     private PlayerMovement _movement;
+    [SerializeField]
+    private PlayerInteractor _interactor;
 
     [HideInInspector]
     public bool EnableMovement = true;
@@ -89,6 +91,18 @@ public class PlayerInputAdapter : MonoBehaviour
         if (context.canceled)
         {
             _movement.StopCrouching();
+        }
+    }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (!EnableMovement)
+        {
+            return;
+        }
+        if (context.started)
+        {
+            _interactor.Interact();
         }
     }
 }

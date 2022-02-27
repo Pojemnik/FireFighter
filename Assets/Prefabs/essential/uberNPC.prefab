@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1434364578280220240}
   - component: {fileID: 1434364578280220241}
   - component: {fileID: 1434364578280220237}
+  - component: {fileID: 1320722590525973866}
   m_Layer: 0
   m_Name: uberNPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: e88f87c60b0e80448aee78cd90954309, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,3 +118,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _maxOxygen: 30
+  _maximumOxygenLoss: 10
+--- !u!114 &1320722590525973866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434364578280220242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6e1a850bec64b4883da912ea243a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

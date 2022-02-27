@@ -17,37 +17,44 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void StartWalking()
     {
-        
+        if(!_animator.GetBool("Extinguisher"))
+        {
+            _animator.SetBool("Run", true);
+        }
     }
 
     public void StopWalking()
     {
-
+        _animator.SetBool("Run", false);
     }
 
     public void StartJump()
     {
-
+        ResetBools();
+        _animator.SetTrigger("Jump");
     }
 
     public void StopJump()
     {
-
+        _animator.SetTrigger("Land");
     }
 
     public void GoToIdle()
     {
         _animator.SetTrigger("ForceIdle");
-        _animator.SetBool("Extinguisher", false);
+        ResetBools();
     }
 
     public void UseAxe()
     {
+        _animator.SetTrigger("Land");
         _animator.SetTrigger("Axe");
     }
 
     public void StartExtinguishing()
     {
+        _animator.SetTrigger("Land");
+        _animator.SetBool("Run", false);
         _animator.SetBool("Extinguisher", true);
     }
 
@@ -59,5 +66,11 @@ public class PlayerAnimationController : MonoBehaviour
     private void OnAxeUseEvent()
     {
         _axe.Use();
+    }
+
+    private void ResetBools()
+    {
+        _animator.SetBool("Extinguisher", false);
+        _animator.SetBool("Run", false);
     }
 }

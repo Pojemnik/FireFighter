@@ -856,6 +856,7 @@ MonoBehaviour:
   _crouchHeightDelta: 0.8
   _gravity: 20
   _kickForce: 15
+  _animationController: {fileID: 4149991459026674553}
   MovementEnabled: 1
 --- !u!114 &3840543605560560878
 MonoBehaviour:
@@ -976,9 +977,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  SafeDropStateChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &2715821210839668832

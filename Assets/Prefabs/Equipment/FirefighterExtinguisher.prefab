@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _extinguishingZone: {fileID: 0}
   _particles: {fileID: 0}
+  _forceField: {fileID: 0}
   _maxFuel: 100
   _fuelUsage: 20
   FuelPercentageUpdatedEvent:

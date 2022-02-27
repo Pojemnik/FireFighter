@@ -10,6 +10,8 @@ public class Extinguisher : MonoBehaviour
     private ExtingiushingZone _extinguishingZone;
     [SerializeField]
     private ParticleSystem _particles;
+    [SerializeField]
+    private GameObject _forceField;
 
     [Header("Fuel")]
     [SerializeField]
@@ -36,6 +38,7 @@ public class Extinguisher : MonoBehaviour
         FuelPercentageUpdatedEvent.Invoke(100);
         _particles.Stop();
         _audioSource.Stop();
+        _forceField.SetActive(false);
     }
 
     public void RefillFuel()
@@ -51,6 +54,7 @@ public class Extinguisher : MonoBehaviour
         {
             _particles.Play();
             _audioSource.Play();
+            _forceField.SetActive(true);
         }
     }
 
@@ -58,6 +62,7 @@ public class Extinguisher : MonoBehaviour
     {
         _extinguishing = false;
         _particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        _forceField.SetActive(false);
         _audioSource.Stop();
     }
 

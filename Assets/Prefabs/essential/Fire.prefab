@@ -2355,7 +2355,7 @@ ParticleSystem:
     randomizePerFrame: 0
   ExternalForcesModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     multiplierCurve:
       serializedVersion: 2
       minMaxState: 0
@@ -2412,7 +2412,7 @@ ParticleSystem:
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 2147483647
     influenceList: []
   ClampVelocityModule:
     enabled: 0
@@ -4999,7 +4999,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 3750
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: 0, z: 0, w: -0.00000005087054}
+  m_BoundingSphereOverride: {x: 7.025104, y: 7.423378, z: 7.373383, w: 7.059953}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5213,6 +5213,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177417785504192898, guid: 03f329464d3952842967b510dc648029,
+        type: 3}
+      propertyPath: ExternalForcesModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03f329464d3952842967b510dc648029, type: 3}

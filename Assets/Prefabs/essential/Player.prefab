@@ -959,7 +959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 3885717755090226622}
   _carrier: {fileID: 564936592168616340}
-  _interactionRange: 1.5
+  _interactionRange: 2.5
   TargetStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -975,6 +975,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc4ed80aaf0c694c88360bf71912c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  SafeDropStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2715821210839668832
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -852,7 +852,7 @@ MonoBehaviour:
   _jumpSpeed: 8
   _playerCamera: {fileID: 3885717755090226623}
   _cameraSesitivity: 0.1
-  _lookXLimit: 45
+  _lookXLimit: 65
   _crouchHeightDelta: 0.8
   _gravity: 20
   _kickForce: 15

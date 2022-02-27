@@ -110,6 +110,7 @@ public class PlayerInputAdapter : MonoBehaviour
             }
             else
             {
+                _movement.StopCrouching();
                 _interactor.PickUp();
             }
         }

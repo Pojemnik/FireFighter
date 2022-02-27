@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1434364578280220241}
   - component: {fileID: 1434364578280220237}
   - component: {fileID: 1320722590525973866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: uberNPC
   m_TagString: NPC
   m_Icon: {fileID: 0}

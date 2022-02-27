@@ -14,13 +14,15 @@ public class PlayerInputAdapter : MonoBehaviour
     private PlayerMovement _movement;
     [SerializeField]
     private PlayerInteractor _interactor;
+    [SerializeField]
+    private PlayerNPCCarrier _carrier;
 
     [HideInInspector]
     public bool EnableMovement = true;
 
     public void UseAxe(InputAction.CallbackContext context)
     {
-        if(!EnableMovement)
+        if(!EnableMovement || _carrier.IsCarrying)
         {
             return;
         }
@@ -32,7 +34,7 @@ public class PlayerInputAdapter : MonoBehaviour
 
     public void UseExtinguisher(InputAction.CallbackContext context)
     {
-        if (!EnableMovement)
+        if (!EnableMovement || _carrier.IsCarrying)
         {
             return;
         }
@@ -59,7 +61,7 @@ public class PlayerInputAdapter : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!EnableMovement)
+        if (!EnableMovement || _carrier.IsCarrying)
         {
             return;
         }
@@ -80,7 +82,7 @@ public class PlayerInputAdapter : MonoBehaviour
 
     public void Crouch(InputAction.CallbackContext context)
     {
-        if (!EnableMovement)
+        if (!EnableMovement || _carrier.IsCarrying)
         {
             return;
         }
@@ -102,7 +104,14 @@ public class PlayerInputAdapter : MonoBehaviour
         }
         if (context.started)
         {
-            _interactor.Interact();
+            if (_carrier.IsCarrying)
+            {
+                _carrier.DropNPC();
+            }
+            else
+            {
+                _interactor.PickUp();
+            }
         }
     }
 }

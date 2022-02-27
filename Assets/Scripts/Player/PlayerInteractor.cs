@@ -7,6 +7,8 @@ public class PlayerInteractor : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private GameObject _camera;
+    [SerializeField]
+    private PlayerNPCCarrier _carrier;
 
     [Header("Config")]
     [SerializeField]
@@ -19,7 +21,7 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactionRange, ~LayerMask.GetMask("AxeZone", "ExtinguisherZone", "Player")))
+        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactionRange, LayerMask.GetMask("Environment")))
         {
             if (hit.transform.gameObject.CompareTag("NPC"))
             {
@@ -31,7 +33,10 @@ public class PlayerInteractor : MonoBehaviour
                 }
                 else
                 {
-                    TargetStateChanged.Invoke(true);
+                    if (!_carrier.IsCarrying)
+                    {
+                        TargetStateChanged.Invoke(true);
+                    }
                 }
                 Debug.LogFormat("Looking at NPC {0}", hit.transform.gameObject.name);
             }
@@ -48,12 +53,14 @@ public class PlayerInteractor : MonoBehaviour
         }
     }
 
-    public void Interact()
+    public void PickUp()
     {
         if (_targetNPC == null)
         {
             return;
         }
-        _targetNPC.transform.parent = transform;
+        _carrier.PickUpNPC(_targetNPC);
+        _targetNPC = null;
+        TargetStateChanged.Invoke(false);
     }
 }

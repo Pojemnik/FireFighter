@@ -9,7 +9,6 @@ public class CharacterOxygenManager : MonoBehaviour
 
     private static float _speedOfRegainingOxygen = 5f;
 
-    private static float _maximumOxygenLoss = 3f;
     private static float _radiusOfOxygenLoss = 9f;
 
     public UnityEvent m_EventDeath;
@@ -20,6 +19,8 @@ public class CharacterOxygenManager : MonoBehaviour
 
     [SerializeField]
     private float _maxOxygen;
+    [SerializeField]
+    private float _maximumOxygenLoss = 10f;
     private float _currentOxygen;
 
     private bool isAlive;

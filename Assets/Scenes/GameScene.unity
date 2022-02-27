@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2024.1729, g: 1990.8613, b: 2398.1836, a: 1}
+  m_IndirectSpecularColor: {r: 2023.498, g: 1990.7832, b: 2399.0195, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -233,6 +233,21 @@ PrefabInstance:
         type: 3}
       propertyPath: FuelPercentageUpdatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362543803489634719, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: steps.Array.data[0].position.y
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362543803489634719, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: steps.Array.data[1].position.y
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362543803489634719, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: steps.Array.data[2].position.y
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}

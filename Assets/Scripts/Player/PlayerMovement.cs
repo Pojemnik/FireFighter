@@ -30,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _kickForce;
 
+    [Header("References")]
+    [SerializeField]
+    private PlayerAnimationController _animationController;
+
     public System.EventHandler Landed;
     public System.EventHandler<bool> WalkingStateChanged;
 
@@ -56,10 +60,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-            if (_characterController.isGrounded)
-            {
-                _jump = true;
-            }
+        if (_characterController.isGrounded)
+        {
+            _jump = true;
+            _animationController.StartJump();
+        }
     }
 
     public void Look(Vector2 direction)
@@ -161,11 +166,13 @@ public class PlayerMovement : MonoBehaviour
         {
             WalkingStateChanged?.Invoke(this, false);
             _lastWalkingState = false;
+            _animationController.StopWalking();
         }
         if (_lastWalkingState == false && _characterController.isGrounded && _inputSpeed != Vector2.zero)
         {
             WalkingStateChanged?.Invoke(this, true);
             _lastWalkingState = true;
+            _animationController.StartWalking();
         }
     }
 
@@ -174,12 +181,13 @@ public class PlayerMovement : MonoBehaviour
         if (_lastGroundedState == false && _characterController.isGrounded == true)
         {
             Landed?.Invoke(this, null);
+            _animationController.StopJump();
         }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.rigidbody != null)
+        if (hit.rigidbody != null)
         {
             hit.rigidbody.AddForce((hit.point - transform.position).normalized * _kickForce);
         }

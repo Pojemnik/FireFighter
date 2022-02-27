@@ -23,6 +23,8 @@ public class PauseManager : MonoBehaviour
         _gameUI.SetActive(true);
         _pauseUI.SetActive(false);
         _unpauseButton.onClick.AddListener(Unpause);
+        Time.timeScale = 1;
+        AudioListener.pause = false;
     }
 
     public void TogglePause()
@@ -35,6 +37,14 @@ public class PauseManager : MonoBehaviour
         {
             Pause();
         }
+    }
+
+    public void PauseWithoutShowingUI()
+    {
+        _cursorManager.UnlockCursor();
+        Time.timeScale = 0;
+        AudioListener.pause = true;
+        _playerInputAdapter.EnableMovement = false;
     }
 
     private void Pause()

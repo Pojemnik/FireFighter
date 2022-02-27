@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-
     public enum FireState 
     {
         Large,
@@ -40,25 +39,22 @@ public class Fire : MonoBehaviour
             this.startLifetime = startLifeTime;
             this.rateOverTime = rateOverTime;
         }
-
     }
 
     private ParticleSystemInformation _particleSystemInitialInformation;
     private ParticleSystemInformation _particleSystemLethalInformation = new ParticleSystemInformation(0.6f, 0.3f, 20f);
 
-    // Start is called before the first frame update
     void Start()
     {
         _currentFireStrength = _maxFireStrength;
 
-        this._particleSystem = GetComponentInChildren<ParticleSystem>();
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
         var main =_particleSystem.main;
         var emission = _particleSystem.emission;
 
         _particleSystemInitialInformation = new ParticleSystemInformation(main.startSize.Evaluate(1), main.startLifetime.Evaluate(1), emission.rateOverTime.Evaluate(1));
     }
 
-    // Update is called once per frame
     void Update()
     {
         float fireStrengthFromBeginningOfFrame = _currentFireStrength;
@@ -77,7 +73,8 @@ public class Fire : MonoBehaviour
         if (_currentFireStrength <= 0) 
         {
             OnFireExtinguished(null);
-            Destroy(gameObject);   
+            _particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            Destroy(gameObject, 2);
         }
 
     }
@@ -136,7 +133,10 @@ public class Fire : MonoBehaviour
         main.startLifetime = _particleSystemLethalInformation.startLifetime + (_particleSystemInitialInformation.startLifetime - _particleSystemLethalInformation.startLifetime) * (_currentFireStrength / _maxFireStrength);
         var emission = _particleSystem.emission;
         emission.rateOverTime = _particleSystemLethalInformation.rateOverTime + (_particleSystemInitialInformation.rateOverTime - _particleSystemLethalInformation.rateOverTime) * (_currentFireStrength / _maxFireStrength);
-
     }
 
+    private void OnDestroy()
+    {
+        Debug.LogFormat("File {0} extingushed", gameObject.name);
+    }
 }

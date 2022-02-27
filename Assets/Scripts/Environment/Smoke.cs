@@ -11,7 +11,7 @@ public class Smoke : MonoBehaviour
     private float _smokeDamageRate;
     public float DamageRate {get {return _smokeDamageRate;}}
     private Fire _fire;
-    // Start is called before the first frame update
+
     void Start()
     {
         _fire = gameObject.GetComponentInParent<Fire>();
@@ -19,11 +19,6 @@ public class Smoke : MonoBehaviour
 
         _fire.FireStateChanged += c_onFireStateChanged;
         _fire.FireExtinguished += c_onSourceFireExtinguished;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     private void c_onFireStateChanged(object sender, EventArgs eventArgs)
@@ -56,6 +51,9 @@ public class Smoke : MonoBehaviour
         handler?.Invoke(this, e);
         _fire.FireStateChanged -= c_onFireStateChanged;
         _fire.FireExtinguished -= c_onSourceFireExtinguished;
+        GetComponent<ParticleSystem>().Stop(false, ParticleSystemStopBehavior.StopEmitting);
+        _smokeDamageRate = 0;
+        Destroy(gameObject, 2);
     }
     
 }

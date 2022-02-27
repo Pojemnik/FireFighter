@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6504983170947677269}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Small wall with door and window
   m_TagString: Untagged
   m_Icon: {fileID: 0}

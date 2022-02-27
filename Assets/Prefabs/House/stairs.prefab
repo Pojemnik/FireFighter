@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3995015268266034600}
   - component: {fileID: 1195092662052630882}
   - component: {fileID: -5526161191968326881}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4565082692610174209}
   - component: {fileID: 5976071652002668718}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

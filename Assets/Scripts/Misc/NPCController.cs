@@ -25,7 +25,7 @@ public class NPCController : MonoBehaviour
         _manager.OnNPCDeath();
         gameObject.tag = "Untagged";
         _dead = true;
-
+        Debug.LogFormat("NPC {0} died", gameObject.name);
     }
 
     public void OnPickup()
@@ -42,7 +42,6 @@ public class NPCController : MonoBehaviour
             i++;
         }
     }
-
 
     public void SaveNPC()
     {

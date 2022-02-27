@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Extinguisher : MonoBehaviour
 {
     [Header("References")]
@@ -16,6 +17,8 @@ public class Extinguisher : MonoBehaviour
     [SerializeField]
     private float _fuelUsage;
 
+    private AudioSource _audioSource;
+
     public UnityEngine.Events.UnityEvent<float> FuelPercentageUpdatedEvent;
 
     private bool _extinguishing = false;
@@ -24,6 +27,7 @@ public class Extinguisher : MonoBehaviour
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         if (_extinguishingZone == null)
         {
             throw new System.NullReferenceException("No extinguishing zone in fire extinguisher");
@@ -31,6 +35,7 @@ public class Extinguisher : MonoBehaviour
         _currentFuel = _maxFuel;
         FuelPercentageUpdatedEvent.Invoke(100);
         _particles.Stop();
+        _audioSource.Stop();
     }
 
     public void RefillFuel()
@@ -45,6 +50,7 @@ public class Extinguisher : MonoBehaviour
         if (_currentFuel > 0)
         {
             _particles.Play();
+            _audioSource.Play();
         }
     }
 
@@ -52,6 +58,7 @@ public class Extinguisher : MonoBehaviour
     {
         _extinguishing = false;
         _particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        _audioSource.Stop();
     }
 
     void Update()

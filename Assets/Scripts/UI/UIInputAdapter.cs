@@ -8,7 +8,7 @@ public class UIInputAdapter : MonoBehaviour
     [SerializeField]
     private PauseManager _pauseManager;
 
-    private bool _canPause;
+    private bool _canPause = true;
 
     private void Start()
     {

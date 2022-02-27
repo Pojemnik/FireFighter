@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2026.3086, g: 1994.8457, b: 2406.7734, a: 1}
+  m_IndirectSpecularColor: {r: 2024.1729, g: 1990.8613, b: 2398.1836, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -236,34 +236,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1294769779}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Show
-      objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -286,23 +266,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameOverScreenController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIBarController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
@@ -2019,6 +1984,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _maxFireStrength
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985179395920870435, guid: 67b8f437edfce924086c33cddd30a5b2,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -2.1742556
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985179395920870435, guid: 67b8f437edfce924086c33cddd30a5b2,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 4.5905e-41
       objectReference: {fileID: 0}
     - target: {fileID: 6573560819617115382, guid: 67b8f437edfce924086c33cddd30a5b2,
         type: 3}

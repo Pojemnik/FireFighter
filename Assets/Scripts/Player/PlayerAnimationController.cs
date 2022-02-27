@@ -35,6 +35,12 @@ public class PlayerAnimationController : MonoBehaviour
 
     }
 
+    public void GoToIdle()
+    {
+        _animator.SetTrigger("ForceIdle");
+        _animator.SetBool("Extinguisher", false);
+    }
+
     public void UseAxe()
     {
         _animator.SetTrigger("Axe");

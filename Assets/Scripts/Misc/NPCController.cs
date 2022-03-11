@@ -9,6 +9,8 @@ public class NPCController : MonoBehaviour
     private CharacterOxygenManager _oxygen;
     private bool _safeToDrop = false;
     private bool _dead;
+    private Collider _collider;
+    private Rigidbody _rb;
 
     public UnityEngine.Events.UnityEvent NPCSaved;
 
@@ -16,6 +18,8 @@ public class NPCController : MonoBehaviour
     {
         _manager = FindObjectOfType<NPCManager>();
         _oxygen = GetComponent<CharacterOxygenManager>();
+        _collider = GetComponent<Collider>();
+        _rb = GetComponent<Rigidbody>();
         _manager.AddLivingNPC();
         _oxygen.m_EventDeath.AddListener(OnDeath);
     }
@@ -31,6 +35,9 @@ public class NPCController : MonoBehaviour
     public void OnPickup()
     {
         SetChildernActive(false);
+        _rb.isKinematic = true;
+        _rb.useGravity = false;
+        _collider.enabled = false;
     }
 
     private void SetChildernActive(bool active)
@@ -52,6 +59,9 @@ public class NPCController : MonoBehaviour
     public void OnDrop()
     {
         SetChildernActive(true);
+        _rb.isKinematic = false;
+        _rb.useGravity = true;
+        _collider.enabled = true;
         if (_safeToDrop && !_dead)
         {
             SaveNPC();

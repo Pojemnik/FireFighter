@@ -10,6 +10,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     private Animator _animator;
 
+    private bool _resetLandNextFrame = false;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -30,13 +32,14 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void StartJump()
     {
-        ResetBools();
+        //ResetBools();
         _animator.SetTrigger("Jump");
     }
 
     public void StopJump()
     {
         _animator.SetTrigger("Land");
+        _resetLandNextFrame = true;
     }
 
     public void GoToIdle()
@@ -48,12 +51,14 @@ public class PlayerAnimationController : MonoBehaviour
     public void UseAxe()
     {
         _animator.SetTrigger("Land");
+        _resetLandNextFrame = true;
         _animator.SetTrigger("Axe");
     }
 
     public void StartExtinguishing()
     {
         _animator.SetTrigger("Land");
+        _resetLandNextFrame = true;
         _animator.SetBool("Run", false);
         _animator.SetBool("Extinguisher", true);
     }
@@ -72,5 +77,14 @@ public class PlayerAnimationController : MonoBehaviour
     {
         _animator.SetBool("Extinguisher", false);
         _animator.SetBool("Run", false);
+    }
+
+    private void Update()
+    {
+        if(_resetLandNextFrame)
+        {
+            _resetLandNextFrame = false;
+            _animator.ResetTrigger("Land");
+        }
     }
 }

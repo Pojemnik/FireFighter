@@ -5,13 +5,13 @@ using UnityEngine;
 public class NPCStatusController : MonoBehaviour
 {
     [SerializeField]
-    private UnityEngine.UI.Image _image;
-    [SerializeField]
     private Sprite deathSprite;
     [SerializeField]
     private Sprite waitSprite;
     [SerializeField]
     private Sprite safeSprite;
+
+    private UnityEngine.UI.Image _image;
 
     public void OnDeath()
     {
@@ -25,6 +25,7 @@ public class NPCStatusController : MonoBehaviour
 
     private void Start()
     {
+        _image = GetComponent<UnityEngine.UI.Image>();
         _image.sprite = waitSprite;
     }
 }

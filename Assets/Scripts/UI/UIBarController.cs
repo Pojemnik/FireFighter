@@ -25,8 +25,7 @@ public class UIBarController : MonoBehaviour
     private BarOrientation _orientation;
 
     [Header("Config")]
-    [SerializeField]
-    private float _maxValue;
+    public float MaxValue;
 
     private RectTransform _rect;
     private Image _image;
@@ -38,7 +37,7 @@ public class UIBarController : MonoBehaviour
             return;
         }
 
-        float precent = value / _maxValue;
+        float precent = value / MaxValue;
         float size = Mathf.Lerp(_minSize, _maxSize, precent);
         _rect.SetSizeWithCurrentAnchors((_orientation == BarOrientation.Horizontal) ? RectTransform.Axis.Horizontal : RectTransform.Axis.Vertical, size);
     }

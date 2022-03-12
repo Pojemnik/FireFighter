@@ -17,6 +17,7 @@ public class CharacterOxygenManager : MonoBehaviour
     [HideInInspector]
     public HashSet<Smoke> SmokesWhichAffectPlayer { get; private set; }
 
+    public float MaxOxygen { get => _maxOxygen; }
     [SerializeField]
     private float _maxOxygen;
     [SerializeField]

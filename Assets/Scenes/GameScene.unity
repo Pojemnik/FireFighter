@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2025.7812, g: 1991.8027, b: 2398.5156, a: 1}
+  m_IndirectSpecularColor: {r: 2026.8008, g: 1992.9102, b: 2399.7227, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2853,7 +2853,7 @@ PrefabInstance:
     - target: {fileID: 1309457166748793675, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
       propertyPath: NPCSaved.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1309457166748793675, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
@@ -2888,7 +2888,7 @@ PrefabInstance:
     - target: {fileID: 2872357504134502155, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2872357504134502155, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
@@ -3376,7 +3376,7 @@ PrefabInstance:
     - target: {fileID: 1309457166748793675, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
       propertyPath: NPCSaved.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1309457166748793675, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
@@ -3416,7 +3416,7 @@ PrefabInstance:
     - target: {fileID: 2872357504134502155, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2872357504134502155, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
@@ -5075,7 +5075,7 @@ PrefabInstance:
     - target: {fileID: 1309457166748793675, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
       propertyPath: NPCSaved.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1309457166748793675, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
@@ -5110,7 +5110,7 @@ PrefabInstance:
     - target: {fileID: 2872357504134502155, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
       propertyPath: m_EventChangeOxygenState.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2872357504134502155, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}

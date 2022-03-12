@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterOxygenManager))]
+[RequireComponent(typeof(Rigidbody))]
 public class NPCController : MonoBehaviour
 {
     private NPCManager _manager;
     private CharacterOxygenManager _oxygen;
     private bool _safeToDrop = false;
     private bool _dead;
-    private Collider _collider;
     private Rigidbody _rb;
 
     public UnityEngine.Events.UnityEvent NPCSaved;
@@ -17,8 +17,11 @@ public class NPCController : MonoBehaviour
     private void Start()
     {
         _manager = FindObjectOfType<NPCManager>();
+        if(_manager == null)
+        {
+            Debug.LogError("No NPC manager found in current scene. NPCs would not work correctly");
+        }
         _oxygen = GetComponent<CharacterOxygenManager>();
-        _collider = GetComponent<Collider>();
         _rb = GetComponent<Rigidbody>();
         _manager.AddLivingNPC();
         _oxygen.m_EventDeath.AddListener(OnDeath);
@@ -35,9 +38,9 @@ public class NPCController : MonoBehaviour
     public void OnPickup()
     {
         SetChildernActive(false);
+        gameObject.layer = LayerMask.NameToLayer("CarriedVictim");
         _rb.isKinematic = true;
         _rb.useGravity = false;
-        _collider.enabled = false;
     }
 
     private void SetChildernActive(bool active)
@@ -59,9 +62,9 @@ public class NPCController : MonoBehaviour
     public void OnDrop()
     {
         SetChildernActive(true);
+        gameObject.layer = LayerMask.NameToLayer("Victims");
         _rb.isKinematic = false;
         _rb.useGravity = true;
-        _collider.enabled = true;
         if (_safeToDrop && !_dead)
         {
             SaveNPC();

@@ -7,6 +7,7 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {
     private NPCManager _manager;
+    private NPCInteractionLabelController _labelController;
     private CharacterOxygenManager _oxygen;
     private bool _safeToDrop = false;
     private bool _dead;
@@ -20,6 +21,11 @@ public class NPCController : MonoBehaviour
         if(_manager == null)
         {
             Debug.LogError("No NPC manager found in current scene. NPCs would not work correctly");
+        }
+        _labelController = FindObjectOfType<NPCInteractionLabelController>();
+        if (_labelController == null)
+        {
+            Debug.LogError("No NPC label controller found in current scene. UI would not work correctly");
         }
         _oxygen = GetComponent<CharacterOxygenManager>();
         _rb = GetComponent<Rigidbody>();
@@ -41,6 +47,7 @@ public class NPCController : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("CarriedVictim");
         _rb.isKinematic = true;
         _rb.useGravity = false;
+        _labelController.OnSafeZoneContainmentChange(_safeToDrop);
     }
 
     private void SetChildernActive(bool active)
@@ -78,6 +85,7 @@ public class NPCController : MonoBehaviour
         if(other.gameObject.layer == LayerMask.NameToLayer("NPCDropZone"))
         {
             _safeToDrop = true;
+            _labelController.OnSafeZoneContainmentChange(true);
             Debug.Log("Safe to drop");
         }
     }
@@ -87,6 +95,7 @@ public class NPCController : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("NPCDropZone"))
         {
             _safeToDrop = false;
+            _labelController.OnSafeZoneContainmentChange(false);
             Debug.Log("Not safe to drop");
         }
     }

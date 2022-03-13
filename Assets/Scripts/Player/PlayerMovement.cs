@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
             StartChrouchingInternal();
         }
     }
-    
+
     public void SetCarrying(bool state)
     {
         _carrying = state;
@@ -201,7 +201,21 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CrouchStopCheck()
     {
-        return !Physics.Raycast(transform.position, Vector3.up, (_characterController.height + _crouchHeightDelta + _defaultCenterHeight) / 2f, LayerMask.GetMask("Environment"));
+        Vector3[] angles = new Vector3[] {
+            new Vector3(0, 0, 0),
+        new Vector3(0, 0, 15),
+        new Vector3(15, 0, 0),
+        new Vector3(-15, 0, 0),
+        new Vector3(0, 0, -15)
+        };
+        for (int i = 0; i < 5; i++)
+        {
+            if (Physics.Raycast(transform.position, Quaternion.Euler(angles[i]) * Vector3.up, ((_characterController.height + _crouchHeightDelta + _defaultCenterHeight) / 2f) / Mathf.Cos(i == 0 ? 0 : Mathf.Deg2Rad * 15), LayerMask.GetMask("Environment")))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void UpdateDirectionVectors()

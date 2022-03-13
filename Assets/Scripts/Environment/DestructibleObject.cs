@@ -8,6 +8,10 @@ public class DestructibleObject : MonoBehaviour
     [SerializeField]
     private int _maxHealth;
 
+    [Header("Expolsion")]
+    [SerializeField]
+    private float _expolsionForce;
+
     [Header("Prefabs")]
     [SerializeField]
     private List<GameObject> _damageLevels;
@@ -18,9 +22,7 @@ public class DestructibleObject : MonoBehaviour
     [SerializeField]
     private GameObject _model;
 
-
     private int _currentHealth;
-
 
     public event System.EventHandler ObjectDestroyed;
 
@@ -39,7 +41,12 @@ public class DestructibleObject : MonoBehaviour
         Instantiate(_hitParticles, hitPosition, Quaternion.LookRotation(hitNormal));
         if (_currentHealth == 0)
         {
-            Instantiate(_fragments, transform.position, transform.rotation);
+            GameObject fragments = Instantiate(_fragments, transform.position, transform.rotation);
+            Rigidbody[] framgentRigidbodies = fragments.transform.GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rb in framgentRigidbodies)
+            {
+                rb.GetComponent<Rigidbody>().AddForceAtPosition(-hitNormal * _expolsionForce, hitPosition);
+            }
             ObjectDestroyed?.Invoke(this, null);
             Destroy(gameObject);
         }

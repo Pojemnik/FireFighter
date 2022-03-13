@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class NPCController : MonoBehaviour
 {
+    [SerializeField]
+    private NPCMaterialManager _materialManager;
+
     private NPCManager _manager;
     private NPCInteractionLabelController _labelController;
     private CharacterOxygenManager _oxygen;
@@ -27,6 +30,11 @@ public class NPCController : MonoBehaviour
         {
             Debug.LogError("No NPC label controller found in current scene. UI would not work correctly");
         }
+        if(_materialManager == null)
+        {
+            Debug.LogErrorFormat("No NPC material manager found in NPC {0}", gameObject.name);
+        }
+        _materialManager.FadeOutEnd += (_, _) => Destroy(gameObject);
         _oxygen = GetComponent<CharacterOxygenManager>();
         _rb = GetComponent<Rigidbody>();
         _manager.AddLivingNPC();
@@ -36,6 +44,7 @@ public class NPCController : MonoBehaviour
     private void OnDeath()
     {
         _manager.OnNPCDeath();
+        _materialManager.OnDeath();
         gameObject.tag = "Untagged";
         _dead = true;
         Debug.LogFormat("NPC {0} died", gameObject.name);
@@ -43,8 +52,8 @@ public class NPCController : MonoBehaviour
 
     public void OnPickup()
     {
-        SetChildernActive(false);
         gameObject.layer = LayerMask.NameToLayer("CarriedVictim");
+        _materialManager.OnPickupStateChange(true);
         _rb.isKinematic = true;
         _rb.useGravity = false;
         _labelController.OnSafeZoneContainmentChange(_safeToDrop);
@@ -63,20 +72,20 @@ public class NPCController : MonoBehaviour
     public void SaveNPC()
     {
         _manager.OnNPCSaved();
+        _materialManager.OnSafe();
         NPCSaved.Invoke();
     }
 
     public void OnDrop()
     {
-        SetChildernActive(true);
         gameObject.layer = LayerMask.NameToLayer("Victims");
+        _materialManager.OnPickupStateChange(false);
         _rb.isKinematic = false;
         _rb.useGravity = true;
         if (_safeToDrop && !_dead)
         {
             SaveNPC();
             gameObject.tag = "Untagged";
-            Destroy(this);
         }
     }
 
@@ -86,7 +95,7 @@ public class NPCController : MonoBehaviour
         {
             _safeToDrop = true;
             _labelController.OnSafeZoneContainmentChange(true);
-            Debug.Log("Safe to drop");
+            _materialManager.OnSafeStateChange(true);
         }
     }
 
@@ -96,7 +105,7 @@ public class NPCController : MonoBehaviour
         {
             _safeToDrop = false;
             _labelController.OnSafeZoneContainmentChange(false);
-            Debug.Log("Not safe to drop");
+            _materialManager.OnSafeStateChange(false);
         }
     }
 }

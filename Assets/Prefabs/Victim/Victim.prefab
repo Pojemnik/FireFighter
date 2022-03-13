@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6e1a850bec64b4883da912ea243a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _materialManager: {fileID: 8341810423183406083}
   NPCSaved:
     m_PersistentCalls:
       m_Calls: []
@@ -942,6 +943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3261579153705949853}
   - component: {fileID: 5831307351527626200}
+  - component: {fileID: 8341810423183406083}
   m_Layer: 13
   m_Name: Victim
   m_TagString: Untagged
@@ -1043,6 +1045,21 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: -0.03623581, z: 0.06895161}
     m_Extent: {x: 0.86626494, y: 0.9134451, z: 0.20829129}
   m_DirtyAABB: 0
+--- !u!114 &8341810423183406083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8841336693264513603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1e42af1cc90e34c87286f19fea2d65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalFadeTime: 3
+  _carriedMaterial: {fileID: 2100000, guid: 8169739836a62a641940f6bf883981fb, type: 2}
+  _fadeMaterial: {fileID: 2100000, guid: 0ffb4e5bdc08ae242830ee6ab0f8c177, type: 2}
 --- !u!1 &8992307087130793217
 GameObject:
   m_ObjectHideFlags: 0

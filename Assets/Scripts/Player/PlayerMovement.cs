@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     public System.EventHandler Landed;
     public System.EventHandler<bool> WalkingStateChanged;
+    public bool IsCrouching { get => _crouching; }
 
     [HideInInspector]
     public bool MovementEnabled = true;

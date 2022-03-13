@@ -8,6 +8,8 @@ public class NPCController : MonoBehaviour
 {
     [SerializeField]
     private NPCMaterialManager _materialManager;
+    [SerializeField]
+    private NPCCollisionsDetector _collisionDetector;
 
     private NPCManager _manager;
     private NPCInteractionLabelController _labelController;
@@ -15,13 +17,34 @@ public class NPCController : MonoBehaviour
     private bool _safeToDrop = false;
     private bool _dead;
     private Rigidbody _rb;
+    private bool _carried = false;
 
     public UnityEngine.Events.UnityEvent NPCSaved;
+    //public event System.EventHandler<bool> CanDropStateChanged;
 
     private void Start()
     {
+        CheckComponentsAndReferences();
+        _materialManager.FadeOutEnd += (_, _) => Destroy(gameObject);
+        _collisionDetector.CollisionStatusChanged += (_,s) => OnCollisionStatusChange(s);
+        _oxygen = GetComponent<CharacterOxygenManager>();
+        _rb = GetComponent<Rigidbody>();
+        _manager.AddLivingNPC();
+        _oxygen.m_EventDeath.AddListener(OnDeath);
+    }
+
+    private void OnCollisionStatusChange(bool status)
+    {
+        if (_carried)
+        {
+            _materialManager.CanDropStateChanged(!status);
+        }
+    }
+
+    private void CheckComponentsAndReferences()
+    {
         _manager = FindObjectOfType<NPCManager>();
-        if(_manager == null)
+        if (_manager == null)
         {
             Debug.LogError("No NPC manager found in current scene. NPCs would not work correctly");
         }
@@ -30,15 +53,14 @@ public class NPCController : MonoBehaviour
         {
             Debug.LogError("No NPC label controller found in current scene. UI would not work correctly");
         }
-        if(_materialManager == null)
+        if (_materialManager == null)
         {
             Debug.LogErrorFormat("No NPC material manager found in NPC {0}", gameObject.name);
         }
-        _materialManager.FadeOutEnd += (_, _) => Destroy(gameObject);
-        _oxygen = GetComponent<CharacterOxygenManager>();
-        _rb = GetComponent<Rigidbody>();
-        _manager.AddLivingNPC();
-        _oxygen.m_EventDeath.AddListener(OnDeath);
+        if (_collisionDetector == null)
+        {
+            Debug.LogErrorFormat("No NPC collision detector found in NPC {0}", gameObject.name);
+        }
     }
 
     private void OnDeath()
@@ -57,6 +79,7 @@ public class NPCController : MonoBehaviour
         _rb.isKinematic = true;
         _rb.useGravity = false;
         _labelController.OnSafeZoneContainmentChange(_safeToDrop);
+        _carried = true;
     }
 
     private void SetChildernActive(bool active)
@@ -82,6 +105,7 @@ public class NPCController : MonoBehaviour
         _materialManager.OnPickupStateChange(false);
         _rb.isKinematic = false;
         _rb.useGravity = true;
+        _carried = false;
         if (_safeToDrop && !_dead)
         {
             SaveNPC();

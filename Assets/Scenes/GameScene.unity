@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2026.4453, g: 1992.7109, b: 2399.6016, a: 1}
+  m_IndirectSpecularColor: {r: 2026.2852, g: 1992.4746, b: 2399.4688, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,6 +136,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1279356674420843092, guid: 67b8f437edfce924086c33cddd30a5b2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279356674420843092, guid: 67b8f437edfce924086c33cddd30a5b2,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091421765472668699, guid: 67b8f437edfce924086c33cddd30a5b2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091421765472668699, guid: 67b8f437edfce924086c33cddd30a5b2,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6573560819617115382, guid: 67b8f437edfce924086c33cddd30a5b2,
         type: 3}
       propertyPath: m_RootOrder
@@ -3118,7 +3138,7 @@ PrefabInstance:
     - target: {fileID: 1052299735181553891, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.152
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 1052299735181553891, guid: d3ea6cd3836137d4f8fd91e22d4d9004,
         type: 3}
@@ -10471,6 +10491,7 @@ MonoBehaviour:
   _pickupText: Press E to pick up
   _unsafeDropText: Press E to drop (unsafe)
   _safeDropText: Press E to drop (safe)
+  _cantDropText: Can't drop here
 --- !u!114 &1965603371 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6169336892134866063, guid: 3b3ef65f54ee4124184e71213be2eb73,

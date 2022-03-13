@@ -20,13 +20,14 @@ public class NPCController : MonoBehaviour
     private bool _carried = false;
 
     public UnityEngine.Events.UnityEvent NPCSaved;
-    //public event System.EventHandler<bool> CanDropStateChanged;
+    public bool CanDrop { get => _canDrop; }
+    private bool _canDrop = true;
 
     private void Start()
     {
         CheckComponentsAndReferences();
         _materialManager.FadeOutEnd += (_, _) => Destroy(gameObject);
-        _collisionDetector.CollisionStatusChanged += (_,s) => OnCollisionStatusChange(s);
+        _collisionDetector.CollisionStatusChanged += (_, s) => OnCollisionStatusChange(s);
         _oxygen = GetComponent<CharacterOxygenManager>();
         _rb = GetComponent<Rigidbody>();
         _manager.AddLivingNPC();
@@ -38,6 +39,8 @@ public class NPCController : MonoBehaviour
         if (_carried)
         {
             _materialManager.CanDropStateChanged(!status);
+            _labelController.OnCanDropStateChange(!status);
+            _canDrop = !status;
         }
     }
 
@@ -115,7 +118,7 @@ public class NPCController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("NPCDropZone"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("NPCDropZone"))
         {
             _safeToDrop = true;
             _labelController.OnSafeZoneContainmentChange(true);

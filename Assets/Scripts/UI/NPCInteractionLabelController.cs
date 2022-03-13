@@ -10,10 +10,13 @@ public class NPCInteractionLabelController : MonoBehaviour
     private string _unsafeDropText;
     [SerializeField]
     private string _safeDropText;
+    [SerializeField]
+    private string _cantDropText;
 
-    private bool _pickedUp;
-    private bool _safeToDrop;
-    private bool _npcAvailable;
+    private bool _pickedUp = false;
+    private bool _safeToDrop = false;
+    private bool _npcAvailable = false;
+    private bool _canDrop = true;
 
     private TMPro.TextMeshProUGUI _label;
 
@@ -40,11 +43,24 @@ public class NPCInteractionLabelController : MonoBehaviour
         UpdateLabel();
     }
 
+    public void OnCanDropStateChange(bool state)
+    {
+        _canDrop = state;
+        UpdateLabel();
+    }
+
     private void UpdateLabel()
     {
         if(_pickedUp)
         {
-            _label.text = _safeToDrop ? _safeDropText : _unsafeDropText;
+            if (_canDrop)
+            {
+                _label.text = _safeToDrop ? _safeDropText : _unsafeDropText;
+            }
+            else
+            {
+                _label.text = _cantDropText;
+            }
             _label.enabled = true;
         }
         else

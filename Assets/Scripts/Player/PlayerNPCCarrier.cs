@@ -27,7 +27,7 @@ public class PlayerNPCCarrier : MonoBehaviour
 
     public void DropNPC()
     {
-        if(_isCarrying)
+        if(_isCarrying && _npc.CanDrop)
         {
             _npc.OnDrop();
             _npc.transform.parent = null;

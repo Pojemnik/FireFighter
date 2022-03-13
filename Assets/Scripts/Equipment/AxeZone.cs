@@ -20,7 +20,7 @@ public class AxeZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         DestructibleObject obj = other.gameObject.GetComponent<DestructibleObject>();
-        if(obj == null)
+        if (obj == null)
         {
             _otherObjectsCount++;
             return;
@@ -38,7 +38,7 @@ public class AxeZone : MonoBehaviour
         if (obj == null)
         {
             _otherObjectsCount--;
-            if(_otherObjectsCount < 0)
+            if (_otherObjectsCount < 0)
             {
                 Debug.LogError("Less than zero other objects in the axe zone. This sould never hapen");
             }

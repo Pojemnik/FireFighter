@@ -77,10 +77,40 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorShatteredFragments
       objectReference: {fileID: 0}
+    - target: {fileID: 882166421579349725, guid: 0b38bbeb881fd2f43919caaf66bbc4f8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.049
+      objectReference: {fileID: 0}
+    - target: {fileID: 2311675162968892212, guid: 0b38bbeb881fd2f43919caaf66bbc4f8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.061
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925865541333897019, guid: 0b38bbeb881fd2f43919caaf66bbc4f8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.052
+      objectReference: {fileID: 0}
+    - target: {fileID: 3171227016539217443, guid: 0b38bbeb881fd2f43919caaf66bbc4f8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204426424877039507, guid: 0b38bbeb881fd2f43919caaf66bbc4f8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.057
+      objectReference: {fileID: 0}
     - target: {fileID: 8168157925436674832, guid: 0b38bbeb881fd2f43919caaf66bbc4f8,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403827624909360739, guid: 0b38bbeb881fd2f43919caaf66bbc4f8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.043
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -3382758298460488922, guid: 0b38bbeb881fd2f43919caaf66bbc4f8, type: 3}

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 3
-  _expolsionForce: 50000
+  _expolsionForce: 500
   _damageLevels:
   - {fileID: 378229158439572948, guid: 75bfd43eff769b443a8464efcbe2c23d, type: 3}
   - {fileID: 1607177087893412005, guid: 59e04cd740682f8429b82bfb09ee3f9d, type: 3}

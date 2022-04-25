@@ -1483,7 +1483,12 @@ PrefabInstance:
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
       propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
@@ -1497,13 +1502,23 @@ PrefabInstance:
       objectReference: {fileID: 1241905805}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 2044399898}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
       propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
       propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: set_enabled
+      value: Show
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
@@ -1528,11 +1543,21 @@ PrefabInstance:
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
       propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.Behaviour, UnityEngine
+      value: GameOverScreenController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: GameOverScreenController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
       propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: m_EventDeath.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3840543605560560878, guid: 07b05b2c87088fe42bf663211cea1f2a,
@@ -3044,7 +3069,7 @@ PrefabInstance:
     - target: {fileID: 2350882520087421309, guid: 666cc0e393b9c884793e8ca72c557ad4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4351621093725113971, guid: 666cc0e393b9c884793e8ca72c557ad4,
         type: 3}

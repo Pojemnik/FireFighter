@@ -901,7 +901,7 @@ MonoBehaviour:
   m_EventChangeOxygenState:
     m_PersistentCalls:
       m_Calls: []
-  _maxOxygen: 100
+  _maxOxygen: 300
   _maximumOxygenLoss: 10
 --- !u!114 &1410308394592055754
 MonoBehaviour:
@@ -1626,6 +1626,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FirefighterExtinguisher
+      objectReference: {fileID: 0}
+    - target: {fileID: 2933689259272161437, guid: bfa0f11ada0ddf5459899df4a8e1707d,
+        type: 3}
+      propertyPath: _maxFuel
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 2933689259272161437, guid: bfa0f11ada0ddf5459899df4a8e1707d,
         type: 3}

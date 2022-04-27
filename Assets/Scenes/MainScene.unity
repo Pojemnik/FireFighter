@@ -1238,6 +1238,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 104902436}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &322887067 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6169336892134866063, guid: 0efb546664479ec44b6e457a7c5548e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1103352216}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9194c4f03f6e6f74a94b911d693dd4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &373434704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1659,6 +1671,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294403230695837595, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: FuelPercentageUpdatedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294403230695837595, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: FuelPercentageUpdatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294403230695837595, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: FuelPercentageUpdatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 322887067}
+    - target: {fileID: 7294403230695837595, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: FuelPercentageUpdatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294403230695837595, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: FuelPercentageUpdatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnValueChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294403230695837595, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: FuelPercentageUpdatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIBarController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294403230695837595, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: FuelPercentageUpdatedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07b05b2c87088fe42bf663211cea1f2a, type: 3}
@@ -3634,6 +3681,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FuelBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370951001349451972, guid: 0efb546664479ec44b6e457a7c5548e6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3370951001349451972, guid: 0efb546664479ec44b6e457a7c5548e6,
         type: 3}

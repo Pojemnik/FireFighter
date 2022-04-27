@@ -35,7 +35,7 @@ public class Extinguisher : MonoBehaviour
             throw new System.NullReferenceException("No extinguishing zone in fire extinguisher");
         }
         _currentFuel = _maxFuel;
-        FuelPercentageUpdatedEvent.Invoke(100);
+        FuelPercentageUpdatedEvent.Invoke(_currentFuel);
         _particles.Stop();
         _audioSource.Stop();
         _forceField.SetActive(false);
@@ -44,7 +44,7 @@ public class Extinguisher : MonoBehaviour
     public void RefillFuel()
     {
         _currentFuel = _maxFuel;
-        FuelPercentageUpdatedEvent.Invoke(100);
+        FuelPercentageUpdatedEvent.Invoke(_currentFuel);
     }
 
     public void StartExtinguishing()
@@ -93,7 +93,7 @@ public class Extinguisher : MonoBehaviour
         {
             _currentFuel = 0;
         }
-        FuelPercentageUpdatedEvent.Invoke((_currentFuel / _maxFuel) * 100f);
+        FuelPercentageUpdatedEvent.Invoke(_currentFuel);
     }
 
     public void Extinguish()

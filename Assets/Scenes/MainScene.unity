@@ -1475,7 +1475,7 @@ PrefabInstance:
     - target: {fileID: 2501915345369853491, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
       propertyPath: TargetStateChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnNPCPickupStateChange
+      value: OnNPCAvailabilityChange
       objectReference: {fileID: 0}
     - target: {fileID: 2501915345369853491, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}

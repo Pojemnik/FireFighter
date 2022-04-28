@@ -871,6 +871,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09262a697eae1b4ba6274c0f4257f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _oxygenRegenerationSpeed: 15
+  _maxOxygen: 300
+  _maximumOxygenLoss: 10
   m_EventDeath:
     m_PersistentCalls:
       m_Calls:
@@ -901,8 +904,6 @@ MonoBehaviour:
   m_EventChangeOxygenState:
     m_PersistentCalls:
       m_Calls: []
-  _maxOxygen: 300
-  _maximumOxygenLoss: 10
 --- !u!114 &1410308394592055754
 MonoBehaviour:
   m_ObjectHideFlags: 0

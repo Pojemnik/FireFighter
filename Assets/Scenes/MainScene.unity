@@ -1682,6 +1682,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4149991459026674553, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: _slowAnimationSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149991459026674553, guid: 07b05b2c87088fe42bf663211cea1f2a,
+        type: 3}
+      propertyPath: _animationSpeedWhileCarrying
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7294403230695837595, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
       propertyPath: FuelPercentageUpdatedEvent.m_PersistentCalls.m_Calls.Array.size

@@ -102,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
     public void SetCarrying(bool state)
     {
         _carrying = state;
+        _animationController.ChangeSlowState(_carrying || _crouching);
     }
 
     private void StopCrouchingInternal()
@@ -114,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 center = _characterController.center;
         center.y += _crouchHeightDelta / 2f;
         _characterController.center = center;
+        _animationController.ChangeSlowState(_carrying || _crouching);
     }
 
     private void StartChrouchingInternal()
@@ -125,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 center = _characterController.center;
         center.y -= _crouchHeightDelta / 2f;
         _characterController.center = center;
+        _animationController.ChangeSlowState(_carrying || _crouching);
     }
 
     private void Start()

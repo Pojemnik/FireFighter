@@ -8,9 +8,14 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField]
     private Axe _axe;
 
+    [Header("Parameters")]
+    [SerializeField]
+    private float _slowAnimationSpeed;
+
     private Animator _animator;
 
     private bool _resetLandNextFrame = false;
+    private bool _slowState = false;
 
     private void Start()
     {
@@ -22,18 +27,36 @@ public class PlayerAnimationController : MonoBehaviour
         if(!_animator.GetBool("Extinguisher"))
         {
             _animator.SetBool("Run", true);
+            if(_slowState)
+            {
+                _animator.speed = _slowAnimationSpeed;
+            }
         }
+    }
+
+    public void ChangeSlowState(bool state)
+    {
+        if(state && !_slowState && _animator.GetBool("Run"))
+        {
+            _animator.speed = _slowAnimationSpeed;
+        }
+        if(!state && _slowState && _animator.GetBool("Run"))
+        {
+            _animator.speed = 1;
+        }
+        _slowState = state;
     }
 
     public void StopWalking()
     {
         _animator.SetBool("Run", false);
+        _animator.speed = 1;
     }
 
     public void StartJump()
     {
-        //ResetBools();
         _animator.SetTrigger("Jump");
+        _animator.speed = 1;
     }
 
     public void StopJump()

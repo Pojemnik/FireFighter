@@ -1424,31 +1424,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 564936592168616340, guid: 07b05b2c87088fe42bf663211cea1f2a,
         type: 3}
-      propertyPath: _boxHalfExtend.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 564936592168616340, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: _boxHalfExtend.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 564936592168616340, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: _boxHalfExtend.z
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 564936592168616340, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: _npcDropOffset.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 564936592168616340, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
-      propertyPath: _npcDropOffset.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 564936592168616340, guid: 07b05b2c87088fe42bf663211cea1f2a,
-        type: 3}
       propertyPath: TargetStateChanged.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}

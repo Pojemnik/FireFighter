@@ -978,6 +978,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc4ed80aaf0c694c88360bf71912c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _npcDropOffset: {x: 0, y: 0.2, z: -0.25}
+  _npcMeshOffset: {x: 0, y: 0.7, z: -1.1}
+  _boxHalfExtend: {x: 0.45, y: 0.2, z: 0.8}
   TargetStateChanged:
     m_PersistentCalls:
       m_Calls:

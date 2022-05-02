@@ -29,10 +29,7 @@ public class NPCMaterialManager : MonoBehaviour
     private Material _defaultMaterial;
     private SkinnedMeshRenderer _meshRenderer;
 
-    private bool _safe = false;
-    private bool _picked = false;
     private bool _fading = false;
-    private bool _canDrop = true;
     private float _fadeTime = 0;
 
     private void Start()
@@ -59,70 +56,36 @@ public class NPCMaterialManager : MonoBehaviour
         _meshRenderer.material.color = c;
     }
 
-    public void OnSafeStateChange(bool state)
+    public void SetStatus(NPCController.NpcStatus status)
     {
         if (_fading)
         {
             return;
         }
-        _safe = state;
-        if (_safe)
+        _meshRenderer.enabled = true;
+        switch (status)
         {
-            _meshRenderer.material.color = _savedWhenDroppedColor;
-        }
-        else
-        {
-            _meshRenderer.material.color = _canDrop ? _canDropColor : _cantDropColor;
-        }
-    }
-
-    public void OnPickupStateChange(bool state)
-    {
-        if (_fading)
-        {
-            return;
-        }
-        _picked = state;
-        if (_picked)
-        {
-            _meshRenderer.material = _carriedMaterial;
-            if (_safe)
-            {
+            case NPCController.NpcStatus.Dropped:
+                _meshRenderer.material.color = Color.white;
+                _meshRenderer.material = _defaultMaterial;
+                break;
+            case NPCController.NpcStatus.Dead:
+            case NPCController.NpcStatus.Saved:
+                FadeOut();
+                break;
+            case NPCController.NpcStatus.Hidden:
+                _meshRenderer.enabled = false;
+                break;
+            case NPCController.NpcStatus.CanDrop:
+                _meshRenderer.material.color = _canDropColor;
+                break;
+            case NPCController.NpcStatus.CantDrop:
+                _meshRenderer.material.color = _cantDropColor;
+                break;
+            case NPCController.NpcStatus.SafeToDrop:
                 _meshRenderer.material.color = _savedWhenDroppedColor;
-            }
-            else
-            {
-                _meshRenderer.material.color = _canDrop ? _canDropColor : _cantDropColor;
-            }
+                break;
         }
-        else
-        {
-            _meshRenderer.material.color = Color.white;
-            _meshRenderer.material = _defaultMaterial;
-        }
-    }
-
-    public void CanDropStateChanged(bool state)
-    {
-        if (_fading)
-        {
-            return;
-        }
-        _canDrop = state;
-        if (!_safe)
-        {
-            _meshRenderer.material.color = _canDrop ? _canDropColor : _cantDropColor;
-        }
-    }
-
-    public void OnDeath()
-    {
-        FadeOut();
-    }
-
-    public void OnSafe()
-    {
-        FadeOut();
     }
 
     private void FadeOut()

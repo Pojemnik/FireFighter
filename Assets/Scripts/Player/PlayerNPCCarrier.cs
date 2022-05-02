@@ -8,6 +8,8 @@ public class PlayerNPCCarrier : MonoBehaviour
     [SerializeField]
     private Vector3 _npcDropOffset;
     [SerializeField]
+    private Vector3 _npcMeshOffset;
+    [SerializeField]
     private Vector3 _boxHalfExtend;
 
     [Header("Events")]
@@ -26,9 +28,7 @@ public class PlayerNPCCarrier : MonoBehaviour
         if (!_isCarrying)
         {
             _npc = npc;
-            _npc.gameObject.SetActive(false);
-            //_npc.OnPickup();
-            //_npc.transform.parent = transform;
+            _npc.OnPickup();
             _isCarrying = true;
             TargetStateChanged.Invoke(true);
         }
@@ -38,9 +38,7 @@ public class PlayerNPCCarrier : MonoBehaviour
     {
         if (_isCarrying && _npc.CanDrop)
         {
-            _npc.gameObject.SetActive(true);
-            //_npc.OnDrop();
-            //_npc.transform.parent = null;
+            _npc.OnDrop();
             _npc = null;
             _isCarrying = false;
             TargetStateChanged.Invoke(false);
@@ -62,15 +60,26 @@ public class PlayerNPCCarrier : MonoBehaviour
             Debug.Log("Collides with floor");
             if (IsPlaceClearToDrop())
             {
-                Debug.Log("Doesn't collide with anyhing");
+                if (IsPlaceSafe())
+                {
+                    Debug.Log("Safe place");
+                    _npc.SetStatusSafe();
+                }
+                else
+                {
+                    Debug.Log("Unsafe place");
+                    _npc.SetStatusUnsafe();
+                }
             }
             else
             {
+                _npc.SetStatusCantDrop();
                 Debug.Log("Collides with something");
             }
         }
         else
         {
+            _npc.SetStatusHidden();
             Debug.Log("Doesn't collide with floor");
         }
     }
@@ -116,16 +125,24 @@ public class PlayerNPCCarrier : MonoBehaviour
         return false;
     }
 
+    private bool IsPlaceSafe()
+    {
+        Collider[] safeOverlap = Physics.OverlapBox(_placeTarget, _boxHalfExtend, Quaternion.LookRotation(transform.forward, Vector3.up), LayerMask.GetMask("NPCDropZone"));
+        return safeOverlap.Length == 0;
+    }
+
     public void SetOnFloor(bool state, Vector3 floorHit)
     {
         _testCollision = state;
+        _npc.transform.position = floorHit + _npcMeshOffset.z * transform.forward + _npcMeshOffset.y * Vector3.up;
+        _npc.transform.rotation = Quaternion.LookRotation(Vector3.up, transform.forward);
         if (state)
         {
             _placeTarget = floorHit + _npcDropOffset.z * transform.forward + _npcDropOffset.y * Vector3.up;
         }
-        //else
-        //{
-        //    //_npc.Hide();
-        //}
+        else
+        {
+            _npc.SetStatusHidden();
+        }
     }
 }

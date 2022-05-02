@@ -8,40 +8,37 @@ public class NPCController : MonoBehaviour
 {
     [SerializeField]
     private NPCMaterialManager _materialManager;
-    [SerializeField]
-    private NPCCollisionsDetector _collisionDetector;
 
     private NPCManager _manager;
     private NPCInteractionLabelController _labelController;
     private CharacterOxygenManager _oxygen;
-    private bool _safeToDrop = false;
-    private bool _dead;
     private Rigidbody _rb;
-    private bool _carried = false;
 
     public UnityEngine.Events.UnityEvent NPCSaved;
-    public bool CanDrop { get => _canDrop; }
-    private bool _canDrop = true;
+    public bool CanDrop { get => _status == NpcStatus.SafeToDrop || _status == NpcStatus.CanDrop; }
+
+    public enum NpcStatus
+    {
+        SafeToDrop,
+        CanDrop,
+        CantDrop,
+        Hidden,
+        Dropped,
+        Dead,
+        Saved
+    }
+
+    public NpcStatus Status { get => _status; }
+    private NpcStatus _status = NpcStatus.Hidden;
 
     private void Start()
     {
         CheckComponentsAndReferences();
         _materialManager.FadeOutEnd += (_, _) => Destroy(gameObject);
-        _collisionDetector.CollisionStatusChanged += (_, s) => OnCollisionStatusChange(s);
         _oxygen = GetComponent<CharacterOxygenManager>();
         _rb = GetComponent<Rigidbody>();
         _manager.AddLivingNPC();
         _oxygen.m_EventDeath.AddListener(OnDeath);
-    }
-
-    private void OnCollisionStatusChange(bool status)
-    {
-        if (_carried)
-        {
-            _materialManager.CanDropStateChanged(!status);
-            _labelController.OnCanDropStateChange(!status);
-            _canDrop = !status;
-        }
     }
 
     private void CheckComponentsAndReferences()
@@ -60,79 +57,80 @@ public class NPCController : MonoBehaviour
         {
             Debug.LogErrorFormat("No NPC material manager found in NPC {0}", gameObject.name);
         }
-        if (_collisionDetector == null)
-        {
-            Debug.LogErrorFormat("No NPC collision detector found in NPC {0}", gameObject.name);
-        }
     }
 
     private void OnDeath()
     {
         _manager.OnNPCDeath();
-        _materialManager.OnDeath();
         gameObject.tag = "Untagged";
-        _dead = true;
+        _status = NpcStatus.Dead;
+        _materialManager.SetStatus(_status);
         Debug.LogFormat("NPC {0} died", gameObject.name);
     }
 
     public void OnPickup()
     {
         gameObject.layer = LayerMask.NameToLayer("CarriedVictim");
-        _materialManager.OnPickupStateChange(true);
         _rb.isKinematic = true;
         _rb.useGravity = false;
-        _labelController.OnSafeZoneContainmentChange(_safeToDrop);
-        _carried = true;
-    }
-
-    private void SetChildernActive(bool active)
-    {
-        int i = 0;
-        while (i < transform.childCount)
-        {
-            transform.GetChild(i).gameObject.SetActive(active);
-            i++;
-        }
+        _labelController.OnSafeZoneContainmentChange(false);
+        _status = NpcStatus.Hidden;
+        _materialManager.SetStatus(_status);
     }
 
     public void SaveNPC()
     {
         _manager.OnNPCSaved();
-        _materialManager.OnSafe();
+        _status = NpcStatus.Saved;
+        _materialManager.SetStatus(_status);
         NPCSaved.Invoke();
     }
 
     public void OnDrop()
     {
         gameObject.layer = LayerMask.NameToLayer("Victims");
-        _materialManager.OnPickupStateChange(false);
         _rb.isKinematic = false;
         _rb.useGravity = true;
-        _carried = false;
-        if (_safeToDrop && !_dead)
+        if (_status == NpcStatus.SafeToDrop)
         {
             SaveNPC();
-            gameObject.tag = "Untagged";
+        }
+        else
+        {
+            _status = NpcStatus.Dropped;
+            _materialManager.SetStatus(_status);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void SetStatusSafe()
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("NPCDropZone"))
-        {
-            _safeToDrop = true;
-            _labelController.OnSafeZoneContainmentChange(true);
-            _materialManager.OnSafeStateChange(true);
-        }
+        _status = NpcStatus.SafeToDrop;
+        _labelController.OnCanDropStateChange(true);
+        _labelController.OnSafeZoneContainmentChange(true);
+        _materialManager.SetStatus(_status);
     }
 
-    private void OnTriggerExit(Collider other)
+    public void SetStatusUnsafe()
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("NPCDropZone"))
-        {
-            _safeToDrop = false;
-            _labelController.OnSafeZoneContainmentChange(false);
-            _materialManager.OnSafeStateChange(false);
-        }
+        _status = NpcStatus.CanDrop;
+        _labelController.OnCanDropStateChange(true);
+        _labelController.OnSafeZoneContainmentChange(false);
+        _materialManager.SetStatus(_status);
+    }
+
+    public void SetStatusHidden()
+    {
+        _status = NpcStatus.Hidden;
+        _labelController.OnSafeZoneContainmentChange(false);
+        _labelController.OnCanDropStateChange(false);
+        _materialManager.SetStatus(_status);
+    }
+
+    public void SetStatusCantDrop()
+    {
+        _status = NpcStatus.CantDrop;
+        _labelController.OnSafeZoneContainmentChange(false);
+        _labelController.OnCanDropStateChange(false);
+        _materialManager.SetStatus(_status);
     }
 }

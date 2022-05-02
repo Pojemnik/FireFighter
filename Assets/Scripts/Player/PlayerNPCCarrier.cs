@@ -64,7 +64,7 @@ public class PlayerNPCCarrier : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (_isCarrying && _testCollision)
         {

@@ -49,6 +49,20 @@ public class PlayerInteractor : MonoBehaviour
         {
             _targetNPC = null;
             TargetStateChanged.Invoke(false);
+            if (_carrier.IsCarrying)
+            {
+                if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit floorHit, _interactionRange, LayerMask.GetMask("Environment", "Destructible", "NPCDropZone", "Floor")))
+                {
+                    //Debug.Log(floorHit.collider.gameObject.name);
+                    _carrier.SetOnFloor(true, floorHit.point);
+                    //Debug.Log("On floor");
+                }
+                else
+                {
+                    _carrier.SetOnFloor(false, Vector3.one);
+                    //Debug.Log("Not on floor");
+                }
+            }
         }
     }
 

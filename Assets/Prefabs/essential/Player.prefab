@@ -979,7 +979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npcDropOffset: {x: 0, y: 0.2, z: -0.25}
-  _npcMeshOffset: {x: 0, y: 0.7, z: -1.1}
+  _npcMeshOffset: {x: 0, y: 0.2, z: -1.1}
   _boxHalfExtend: {x: 0.45, y: 0.2, z: 0.8}
   TargetStateChanged:
     m_PersistentCalls:

@@ -122,13 +122,13 @@ public class PlayerNPCCarrier : MonoBehaviour
                 }
             }
         }
-        return false;
+        return true;
     }
 
     private bool IsPlaceSafe()
     {
         Collider[] safeOverlap = Physics.OverlapBox(_placeTarget, _boxHalfExtend, Quaternion.LookRotation(transform.forward, Vector3.up), LayerMask.GetMask("NPCDropZone"));
-        return safeOverlap.Length == 0;
+        return safeOverlap.Length > 0;
     }
 
     public void SetOnFloor(bool state, Vector3 floorHit)

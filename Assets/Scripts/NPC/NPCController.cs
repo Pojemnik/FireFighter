@@ -73,7 +73,7 @@ public class NPCController : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("CarriedVictim");
         _rb.isKinematic = true;
         _rb.useGravity = false;
-        _labelController.OnSafeZoneContainmentChange(false);
+        _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.CantDrop);
         _status = NpcStatus.Hidden;
         _materialManager.SetStatus(_status);
     }
@@ -81,6 +81,7 @@ public class NPCController : MonoBehaviour
     public void SaveNPC()
     {
         _manager.OnNPCSaved();
+        _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.NotAvailable);
         _status = NpcStatus.Saved;
         _materialManager.SetStatus(_status);
         NPCSaved.Invoke();
@@ -100,37 +101,41 @@ public class NPCController : MonoBehaviour
             _status = NpcStatus.Dropped;
             _materialManager.SetStatus(_status);
         }
+        _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.NotAvailable);
     }
 
     public void SetStatusSafe()
     {
         _status = NpcStatus.SafeToDrop;
-        _labelController.OnCanDropStateChange(true);
-        _labelController.OnSafeZoneContainmentChange(true);
+        _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.SafeToDrop);
         _materialManager.SetStatus(_status);
     }
 
     public void SetStatusUnsafe()
     {
         _status = NpcStatus.CanDrop;
-        _labelController.OnCanDropStateChange(true);
-        _labelController.OnSafeZoneContainmentChange(false);
+        _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.CanDrop);
         _materialManager.SetStatus(_status);
     }
 
-    public void SetStatusHidden()
+    public void SetStatusHidden(bool tooFar)
     {
         _status = NpcStatus.Hidden;
-        _labelController.OnSafeZoneContainmentChange(false);
-        _labelController.OnCanDropStateChange(false);
+        if (tooFar)
+        {
+            _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.TooFar);
+        }
+        else
+        {
+            _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.NotOnFloor);
+        }
         _materialManager.SetStatus(_status);
     }
 
     public void SetStatusCantDrop()
     {
         _status = NpcStatus.CantDrop;
-        _labelController.OnSafeZoneContainmentChange(false);
-        _labelController.OnCanDropStateChange(false);
+        _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.CantDrop);
         _materialManager.SetStatus(_status);
     }
 }

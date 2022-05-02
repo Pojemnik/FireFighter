@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
 public class PlayerNPCCarrier : MonoBehaviour
 {
     [Header("Config")]
@@ -12,9 +13,6 @@ public class PlayerNPCCarrier : MonoBehaviour
     [SerializeField]
     private Vector3 _boxHalfExtend;
 
-    [Header("Events")]
-    public UnityEngine.Events.UnityEvent<bool> TargetStateChanged;
-
     [HideInInspector]
     public bool IsCarrying { get => _isCarrying; }
 
@@ -22,6 +20,12 @@ public class PlayerNPCCarrier : MonoBehaviour
     private NPCController _npc;
     private bool _testCollision = false;
     private Vector3 _placeTarget;
+    private PlayerMovement _movement;
+
+    private void Start()
+    {
+        _movement = GetComponent<PlayerMovement>();
+    }
 
     public void PickUpNPC(NPCController npc)
     {
@@ -30,7 +34,7 @@ public class PlayerNPCCarrier : MonoBehaviour
             _npc = npc;
             _npc.OnPickup();
             _isCarrying = true;
-            TargetStateChanged.Invoke(true);
+            _movement.SetCarrying(true);
         }
     }
 
@@ -41,7 +45,22 @@ public class PlayerNPCCarrier : MonoBehaviour
             _npc.OnDrop();
             _npc = null;
             _isCarrying = false;
-            TargetStateChanged.Invoke(false);
+            _movement.SetCarrying(false);
+        }
+    }
+
+    public void SetOnFloor(bool state, Vector3 floorHit)
+    {
+        _testCollision = state;
+        _npc.transform.position = floorHit + _npcMeshOffset.z * transform.forward + _npcMeshOffset.y * Vector3.up;
+        _npc.transform.rotation = Quaternion.LookRotation(Vector3.up, transform.forward);
+        if (state)
+        {
+            _placeTarget = floorHit + _npcDropOffset.z * transform.forward + _npcDropOffset.y * Vector3.up;
+        }
+        else
+        {
+            _npc.SetStatusHidden(true);
         }
     }
 
@@ -79,7 +98,7 @@ public class PlayerNPCCarrier : MonoBehaviour
         }
         else
         {
-            _npc.SetStatusHidden();
+            _npc.SetStatusHidden(false);
             Debug.Log("Doesn't collide with floor");
         }
     }
@@ -129,20 +148,5 @@ public class PlayerNPCCarrier : MonoBehaviour
     {
         Collider[] safeOverlap = Physics.OverlapBox(_placeTarget, _boxHalfExtend, Quaternion.LookRotation(transform.forward, Vector3.up), LayerMask.GetMask("NPCDropZone"));
         return safeOverlap.Length > 0;
-    }
-
-    public void SetOnFloor(bool state, Vector3 floorHit)
-    {
-        _testCollision = state;
-        _npc.transform.position = floorHit + _npcMeshOffset.z * transform.forward + _npcMeshOffset.y * Vector3.up;
-        _npc.transform.rotation = Quaternion.LookRotation(Vector3.up, transform.forward);
-        if (state)
-        {
-            _placeTarget = floorHit + _npcDropOffset.z * transform.forward + _npcDropOffset.y * Vector3.up;
-        }
-        else
-        {
-            _npc.SetStatusHidden();
-        }
     }
 }

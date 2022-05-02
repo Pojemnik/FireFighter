@@ -9,16 +9,16 @@ public class PlayerInteractor : MonoBehaviour
     private GameObject _camera;
     [SerializeField]
     private PlayerNPCCarrier _carrier;
+    [SerializeField]
+    private NPCInteractionLabelController _labelController;
 
     [Header("Config")]
     [SerializeField]
     private float _interactionRange;
 
-    [Header("Events")]
-    public UnityEngine.Events.UnityEvent<bool> TargetStateChanged;
-
     private NPCController _targetNPC = null;
 
+    //That's ugly
     private void Update()
     {
         if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactionRange, LayerMask.GetMask("Victims")))
@@ -28,27 +28,32 @@ public class PlayerInteractor : MonoBehaviour
                 _targetNPC = hit.transform.gameObject.GetComponent<NPCController>();
                 if (_targetNPC == null)
                 {
-                    TargetStateChanged.Invoke(false);
+                    if (!_carrier.IsCarrying)
+                    {
+                        _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.NotAvailable);
+                    }
                     Debug.LogErrorFormat("NPC {0} is tagged correctly, but it doesn't have NPCController", hit.transform.gameObject.name);
                 }
                 else
                 {
                     if (!_carrier.IsCarrying)
                     {
-                        TargetStateChanged.Invoke(true);
+                        _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.CanPickUp);
                     }
                 }
             }
             else
             {
                 _targetNPC = null;
-                TargetStateChanged.Invoke(false);
+                if (!_carrier.IsCarrying)
+                {
+                    _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.NotAvailable);
+                }
             }
         }
         else
         {
             _targetNPC = null;
-            TargetStateChanged.Invoke(false);
             if (_carrier.IsCarrying)
             {
                 if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit floorHit, _interactionRange, LayerMask.GetMask("Environment", "Destructible", "NPCDropZone", "Floor")))
@@ -59,6 +64,10 @@ public class PlayerInteractor : MonoBehaviour
                 {
                     _carrier.SetOnFloor(false, Vector3.one);
                 }
+            }
+            else
+            {
+                _labelController.SetLabelStatus(NPCInteractionLabelController.NpcLabelEnum.NotAvailable);
             }
         }
     }
@@ -71,6 +80,5 @@ public class PlayerInteractor : MonoBehaviour
         }
         _carrier.PickUpNPC(_targetNPC);
         _targetNPC = null;
-        TargetStateChanged.Invoke(false);
     }
 }
